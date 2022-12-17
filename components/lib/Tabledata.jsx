@@ -1,44 +1,7 @@
 import { delete_xrh_data, get_xrh_data, queryBuilder, _iframe_func } from 'functions'
 import React, {useEffect, useState} from 'react'
+import { Button, Button2, Button3 } from './Buttons';
 
-
-
-export const Button = ({query, pages=[], current_param=''}) => {
-    const [get_query, setQuery ] = useState({});
-    useEffect(() => {
-      queryBuilder(query).then(data => setQuery(data) );
-    }, [query])
-    
-    return (
-        <>
-            {pages.map((data, i) => {
-                {/* const d = {pagename:'',title:'',modalclass:''} */}
-                return data.show_modal == true? (
-                    <td key={`id_asdas343403434_${i}`}>
-                        <a 
-                        className={`${data.classname} ${data.modalclassid}`}
-                        href={`/${data.pagename}/${get_query}`}
-                        data-container={`${data.modalclassid}`}
-                        onClick={_iframe_func}
-                        >{data.title}</a>
-                    </td>
-                ) : (
-                        <td key={`id_asdas34340_${i}`}>
-                        <a
-                        data-toggle="modal"
-                        data-target=".bd-example-modal-lg"
-                        className={`${data.classname} ${data.modalclassid}`}
-                        href={`/${data.pagename}/${get_query}`}
-                        data-container={`${data.modalclassid}`}
-                        onClick={_iframe_func}
-                        >{data.title}</a>
-                        </td>
-                    )
-            })} 
-            
-        </>
-    )
-}
 
 
 
@@ -55,7 +18,6 @@ export const Tabledata = ({
     useEffect(() => {
         queryBuilder(tbody).then(data => { setQuery(data); })
     }, [])
-
 
     async function remove_default(el) {
 
@@ -125,45 +87,6 @@ export const Tabledata = ({
 
 
 
-export const Button2 = ({querydata}) => {
-    const [query, setQuery] = useState([])
-    useEffect(() => {queryBuilder(querydata).then((data) => { 
-            setQuery(data); })
-    }, [])
-    return (
-        <>
-            <a  href={`/${query}`}>Delete</a>
-        </>
-    )
-
- }
-
-
- export const Button3 = ({querydata, buttons={}, href=''}) => {
-    const [query, setQuery] = useState([])
-    const [content, setContent] = useState([])
-    // const url = `${href}/${querydata.id}`;
-   
-   
-    useEffect(() => { queryBuilder(querydata).then((data) => { 
-            setQuery(data);
-        })
-        // get_xrh_data(url, false).then(data => {
-        //     setContent(data.data)
-        // })
-    }, [])
-  
-    
-    return (
-        <div>
-            <a  href={`/${query}`}>Delete </a>
-        </div>
-    )
-
- }
-
-
-
 
 export const Table2 = ({
     thead=[], 
@@ -217,8 +140,6 @@ export const Table2 = ({
 
 
 
-
-
 export const Table3 = ({
     thead=[], 
     tbody=[],
@@ -259,7 +180,9 @@ export const Table3 = ({
                             querydata={data2}  
                             buttons={buttons}
                             href={href}
+                            status={data2.status}
                         />
+                        
                         </td>
                       
                     </tr>

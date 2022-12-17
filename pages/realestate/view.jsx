@@ -37,7 +37,7 @@ export default function View(){
             get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
                 setContent2(data.data);  
             });
-      }, 30000);
+      }, 40000);
    }, [param])
 
    async function remove_formfield(el) {
@@ -49,7 +49,7 @@ export default function View(){
 
   return (
     <Layout1 >
-      <AppHead title={`Bomach Group | `} />
+      <AppHead title={`Bomach Group | ${title}`} />
     <main>
     <div className="container-fluid px-4">
       <h1 className="mt-4">{title}</h1>
@@ -100,7 +100,7 @@ export default function View(){
         
     </div>
     <Modal />
-    <AppScript path='../../' />
+    <AppScript path='../' />
     </main>
     </Layout1>
 

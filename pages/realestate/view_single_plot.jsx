@@ -13,6 +13,8 @@ const View_single = () => {
 
   const router = useRouter();
   const qy = router.query
+  const estate_id = qy.id;
+  const url1 = `${process.env.realestate}/estate/plot/get-plot-estate-id`;
 
   useEffect( () => {
         get_xrh_data(`${process.env.main}/formfield/get-formfield/realestate/`, false).then(data => {
@@ -22,12 +24,12 @@ const View_single = () => {
       get_xrh_data(`${process.env.realestate}/estate/plot/get-estate-plot/`, false).then(data => {
           setContent2(data.data);  
       });
-      const estate_id = qy.id;
-      get_xrh_data(`${process.env.realestate}/estate/plot/get-plot-estate-id/${estate_id}/`, false).then(data => {
-        setContent3(data.data);  
-    });
-      
+
+      const container = [...content2.filter(data => data.estate_id === estate_id)];
+      setContent3(container);
   }, [qy] )
+
+
 
   
   return (
@@ -35,9 +37,20 @@ const View_single = () => {
     <div className='col-lg-12'>
       <h2>View Estate plot</h2>
       <Table3 
-      thead={['date_of_purchase']}
+      thead={['date_of_purchase','status','unique_code']}
       tbody={content3}
-      href={`${process.env.realestate}/estate/plot/get-plot-estate-id`}
+      href={url1}
+      buttons={
+        {
+          "available":[
+              {name:'sell', href:'/realestate/sell_plot', classname:'btn btn-sm btn-info'},
+              {name:'Add Files', href:'/gallery', classname:'btn btn-sm btn-warning'},
+              {name:'View Files', href:'/view_gallery', classname:'btn btn-sm btn-info'},
+            ],
+          "pending":[],
+          "reserved":[],
+        }
+      }
       />
     </div>
     
