@@ -37,7 +37,7 @@ const View_single = () => {
     <div className='col-lg-12'>
       <h2>View Estate plot</h2>
       <Table3 
-      thead={['date_of_purchase','status','unique_code']}
+      thead={['name','status','unique_code','date_of_purchase']}
       tbody={content3}
       href={url1}
       buttons={

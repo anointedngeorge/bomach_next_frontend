@@ -19,11 +19,11 @@ export const Customer = ({name='', label='', on_change_fun=''}) => {
   return (
     <div>
         <label>{label}</label>
-        <select onChange={on_change_fun || default_fun} name={name} className="form-control form-control-sm" >
+        <select required onChange={on_change_fun || default_fun} name={name} className="form-control form-control-sm" >
         <option defaultValue={true} >Choose</option>
             {content.map( (data, i) => {
                 return (
-                    <option key={`id_asf334434_${i}`} value={data.id} > 
+                    <option key={`id_asf334434_${i}`} value={`${data.id}`} > 
                         {data.first_name} {data.last_name}
                     </option>
                 )

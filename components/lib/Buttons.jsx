@@ -68,6 +68,14 @@ export const Button2 = ({querydata}) => {
       
         setSelectedBtn(buttons[status])
     }, [])
+
+
+    async function remove_formfield(el) {
+        const id = el.target.dataset['unique_id'];
+        const url = `${process.env.realestate}/estate/plot/delete-estate-plot/${id}/`
+        // alert(url)
+        delete_xrh_data(url)
+    }
   
     
     return (
@@ -85,7 +93,7 @@ export const Button2 = ({querydata}) => {
                 )
 
             })}
-            <a className='btn btn-sm btn-danger' href={`/${query}`}>Delete </a>
+            <button onClick={remove_formfield} className='btn btn-sm btn-danger' data-unique_id={querydata.id}>Delete </button>
         </div>
     )
 

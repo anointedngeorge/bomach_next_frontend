@@ -47,6 +47,6 @@ export const SERVICES = [
 export const baseUrl = {}
 
 export const FORMTYPE = [
-    'text', 'datetime', 'email',
+    'text', 'datetime', 'email','number',
     'date', 'color', 'tel','password'
 ]

@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router';
 import { Branch } from 'components/lib/Branch';
 import { Customer } from 'components/lib/Customer';
+import { settings_form, _settingFormWithConfirmationPrompt } from 'functions';
 
 
 export default function sell_plot() {
@@ -23,13 +24,17 @@ export default function sell_plot() {
 
   return (
     <div className='container'>
+      <form onSubmit={_settingFormWithConfirmationPrompt} method="POST" action={`${process.env.main}/payment/register-payment`} >
       <div className='mt-4'>
-          <h3>Sell This Plot ({qy.id})</h3>
+          <h3>Sell This Plot ({qy.name} - {qy.id})</h3>
           <div className='row'>
-            {JSON.stringify(qy)}
+            {/* {JSON.stringify(qy)} */}
             <div className='col-md-4'>
-              <Branch name_attr='branch' on_change_fun={branch_fun}  />
-              <input hidden name='branch_name' id='branch_name' />
+              <Branch required name_attr='branch' on_change_fun={branch_fun}  />
+              <div className='col-md-12'>
+              {/* <label>Branch name</label> */}
+              <input hidden required className='form-control form-control-sm' name='branch_name' id='branch_name' />
+              </div>
             </div>
 
             <div className='col-md-4'>
@@ -43,7 +48,7 @@ export default function sell_plot() {
             </div>
 
             <div className='col-md-4'>
-            <label>Plot Id</label>
+            <label>receiver</label>
               <input
               className='form-control form-control-sm'
               type={'text'} 
@@ -54,40 +59,57 @@ export default function sell_plot() {
 
           </div>
           <div className='row'>
-              <div className='col-md-4'>
+              <div className='col-md-3'>
                   <label>Initiator</label>
                   <input 
                   type={'text'} 
                   className='form-control form-control-sm' 
                   name='initiator' 
-                  defaultValue={'Onovo Arinze'}/>
+                  defaultValue={'Onovo Arinze'} />
               
                   <input
                   hidden
                   type={'text'} 
                   className='form-control form-control-sm' 
                   name='status' 
-                  defaultValue={'pending'}/>
+                  defaultValue={'pending'}  />
 
               </div>
 
-              <div className='col-md-4'>
+              <div className='col-md-3'>
                   <label>Plot Name</label>
-                  <input 
+                  <input
+                  readOnly
                   type={'text'} 
                   className='form-control form-control-sm' 
                   name='name' 
                   defaultValue={qy.name}/>
               </div>
 
+              <div className='col-md-3'>
+                  <label>total amount</label>
+                  <input
+                  readOnly
+                  type={'text'} 
+                  className='form-control form-control-sm' 
+                  name='total_amount' 
+                  defaultValue={qy.amount}/>
+              </div>
 
-              <div className='col-md-4'>
-                  <Customer name='customer' on_change_fun={customer_fun} />
-                  <input hidden name='customer_name' id='customer_name' />
+
+              <div className='col-md-3'>
+                  <Customer label='Select Customer' name='customer' on_change_fun={customer_fun} />
+                  <div className='col-md-12'>
+                    <input hidden required name='customer_name' id='customer_name' />
+                  </div>
               </div>
 
           </div>
       </div>
+      <div className='mt-4'>
+        <button type='submit'>Create</button>
+      </div>
+      </form>
     </div>
   )
 }
