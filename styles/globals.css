@@ -15,5 +15,6 @@ iframe {
 
 a.buttonx {
   /* font-size: 10px; */
-  display:inline;
+  display:inline-block;
+  margin:1.7px;
 }

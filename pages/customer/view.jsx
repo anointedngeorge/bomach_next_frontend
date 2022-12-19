@@ -2,7 +2,7 @@ import { AppScript } from 'components/lib/AppScript'
 import Script from 'next/script'
 import React, {useEffect, useState} from 'react'
 import { useRouter } from 'next/router';
-import { delete_xrh_data, get_xrh_data } from 'functions';
+import { authentication_token, delete_xrh_data, get_xrh_data } from 'functions';
 import { Tabledata } from 'components/lib/Tabledata';
 import { Modal } from 'components/lib/Modal';
 import { Layout1 } from 'components/layout/Layout1';
@@ -13,7 +13,7 @@ import { AppHead } from 'components/lib/AppHead';
 
 
 
-export default function View(){
+export default function View(props){
     const router = useRouter();
     const { param, title} = router.query
     const [content, setContent] = useState([])
@@ -50,8 +50,8 @@ export default function View(){
 }
 
   return (
-    <Layout1 >
-      <AppHead title={`Bomach Group | `} />
+    <Layout1 user={props.user} user_status={props.user_status} >
+      <AppHead title={`Bomach Group | ${title}`} />
     <main>
    
     <div className="container-fluid px-4">
@@ -88,4 +88,19 @@ export default function View(){
     </Layout1>
 
   )
+}
+
+
+export async function getServerSideProps({ req, res }) {
+  const user_token = req.cookies.user_token;
+  const user_status = req.cookies.user_status;
+  const url = `${process.env.auth}/login/get_user`
+  const user = await authentication_token(url, user_token);
+
+  return {
+    props: {
+      user: user,
+      user_status:user.status,
+    },
+  };
 }

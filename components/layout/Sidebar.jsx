@@ -2,7 +2,7 @@ import { NAVIGATION } from 'navigation'
 import React, {useState, useEffect} from 'react'
 import keyIndex from 'react-key-index';
 
-export const Sidebar = () => {
+export const Sidebar = ({user={}}) => {
     const [navigation, setNavigation] = useState([])
    
 
@@ -57,13 +57,14 @@ export const Sidebar = () => {
         </div>
         <div className="sb-sidenav-footer">
           <div className="small">Logged in as:</div>
-          <p>
-            Onovo Arinze
+          <p  className='text text-info'>
+            {user.first_name} {user.last_name}
           </p>
-          <p>
-            anointedngeorge@gmail.com
+          <p className='text text-warning'>
+          {user.email} <br />
+          {user.phone_number}
+          
           </p>
-
         </div>
       </nav>
     </div>

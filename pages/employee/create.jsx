@@ -2,7 +2,7 @@ import { AppScript } from 'components/lib/AppScript'
 import Script from 'next/script'
 import React, {useEffect, useState} from 'react'
 import { useRouter } from 'next/router';
-import { get_xrh_data, settings_form } from 'functions';
+import { authentication_token, get_xrh_data, settings_form } from 'functions';
 import { DynamicFormData } from 'components/lib/DynamicForm';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
@@ -12,7 +12,7 @@ import { AppHead } from 'components/lib/AppHead';
 
 
 
-export default function Create(){
+export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
     const [content, setContent] = useState([])
@@ -24,8 +24,8 @@ export default function Create(){
     }, [param] )
    
   return (
-    <Layout1 >
-      <AppHead title={`Bomach Group | Employee`} />
+    <Layout1 user={props.user} user_status={props.user_status} >
+      <AppHead title={`Bomach Group | ${title}`} />
     <main>
     <div className="container-fluid px-4">
       <h1 className="mt-4">{title}</h1>
@@ -53,4 +53,19 @@ export default function Create(){
     </Layout1>
 
   )
+}
+
+
+export async function getServerSideProps({ req, res }) {
+  const user_token = req.cookies.user_token;
+  const user_status = req.cookies.user_status;
+  const url = `${process.env.auth}/login/get_user`
+  const user = await authentication_token(url, user_token);
+
+  return {
+    props: {
+      user: user,
+      user_status:user.status,
+    },
+  };
 }

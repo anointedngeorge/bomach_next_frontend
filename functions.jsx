@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "navigation";
+// import { headers } from "next.config";
 var JSAlert = require("js-alert");
-
 
 
 export const service_iframe_func = async function(el) {
@@ -324,47 +324,73 @@ export async function _settingFormWithConfirmationPrompt(el) {
 
 
 
-export  async function cashPaymentMethod(el) {
-  el.preventDefault();
-  const FORM_ELEMENTS = await el.target.elements;
-  const FORM_DATA = await object_json(FORM_ELEMENTS)
-  const FORM_URL = el.target.action;
-  const FORM_METHOD = el.target.method;
-
-    if (document) {
-      const total = document.getElementById('total').value;
-      FORM_DATA['total'] = total;
-      await axios({
-          url:FORM_URL,
-          method: FORM_METHOD,
-          headers: {
-            'Content-Type':'application/json'
-          },
-          data: FORM_DATA
-        }).then(data => {
-            JSAlert.alert(JSON.stringify(data.data.message))
-        }).catch(error => {
-            JSAlert.alert(JSON.stringify(error.message))
-        })
-    }
-}
 
 
+export async function authentication(el) {
+  el.preventDefault()
+  const elements = await el.target.elements;
+  const method_d = el.target.method;
+  const data = await object_json(elements)
+  let counter = 0;
+  const url2 = el.target.action;
+  const methd = `${el.target.method}`.toUpperCase();
+  
+  // setTimeout( () => {
+  //   let t = counter 
+  // }, 2)
 
-export  async function ReceiptPrintoutFun(el) {
-  el.preventDefault();
-  const FORM_ELEMENTS = await el.target.elements;
-  const FORM_DATA = await object_json(FORM_ELEMENTS)
-  const FORM_URL = el.target.action;
-  const FORM_METHOD = el.target.method;
-  queryBuilder(FORM_DATA).then(data => {
-      if (window) {
-        window.location.replace(`${FORM_URL}/${data}`)
+  await axios({
+      url:url2,
+      method: methd,
+      headers: {
+        'Content-Type':'application/x-www-form-urlencoded',
+      },
+      data: data
+    }).then(data => {
+      const response = data.data;
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      if (window && document) {
+        if (response.status == true) {
+          setCookie('user_token', response.access_token, 1);
+          setCookie('user_status', response.status, 1);
+          document.location.assign('/dashboard')
+        }    
+      }
 
-    }
+    }).catch(error => {
+      // console.log(error);
+      const message =  `
+        Invailed User credentials.
+        ${error.message}
+      `
+      JSAlert.alert(JSON.stringify(message))
     })
-    
 }
+
+
+export async function authentication_token(url, cookie_token) {
+  let container = []
+
+  const defaultOptions = {
+    headers:{
+      "Content-Type":'application/json',
+    "Authorization" : `Bearer ${cookie_token}`
+    }
+  };
+  const req = await fetch(url, defaultOptions)
+  const response = await req.json()
+  if (response.detail === undefined) {
+      return {...response, status:true}
+  }else {
+    return {status:false};
+  }
+}
+
 
 
 
