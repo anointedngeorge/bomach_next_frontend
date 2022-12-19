@@ -29,9 +29,8 @@ export  const NAVIGATION = [
         href:'/settings/formfieldsettings?param=formfield&title=Edit Form Field', icon:''},
         {name:'Create Forms', 
         href:'/settings/forms?param=forms&title=Create Form', icon:''},
-
-        // {name:'websocket', 
-        // href:'/settings/websocket?param=websocket&title=Create websocket', icon:''},
+        {name:'Add Attachment', 
+        href:'/settings/attachment?param=attachment&title=Add attachment', icon:''},
         
     ]}
 ]

@@ -17,7 +17,7 @@ export const Tabledata = ({
     const [query, setQuery] = useState([])
     useEffect(() => {
         queryBuilder(tbody).then(data => { setQuery(data); })
-    }, [])
+    }, [tbody])
 
     async function remove_default(el) {
 
@@ -147,7 +147,9 @@ export const Table3 = ({
     href=''
 }) => {
   return (
-    <div className='row'>
+   
+   
+        <div className='table-responsive'>
         <table className='table table-sm'>
             <thead>
                 <tr>
@@ -175,7 +177,7 @@ export const Table3 = ({
                             )
                         })}
                         <td>
-                        <Button3 
+                        <Button3
                             key={`id_dasfda_${i}`}  
                             querydata={data2}  
                             buttons={buttons}
@@ -190,6 +192,6 @@ export const Table3 = ({
                 })}
             </tbody>
         </table>
-    </div>
+        </div>
   )
 }

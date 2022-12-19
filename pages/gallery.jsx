@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router';
 
 
-export default function gallery() {
+export default function Gallery() {
 
     const router = useRouter();
     const qy = router.query

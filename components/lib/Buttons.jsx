@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useReducer, useState} from 'react'
 import { delete_xrh_data, get_xrh_data, queryBuilder, _iframe_func } from 'functions'
 
 export const Button = ({query, pages=[], current_param=''}) => {
@@ -45,7 +45,7 @@ export const Button2 = ({querydata}) => {
     const [query, setQuery] = useState([])
     useEffect(() => {queryBuilder(querydata).then((data) => { 
             setQuery(data); })
-    }, [])
+    }, [querydata])
     return (
         <>
             <a  href={`/${query}`}>Delete</a>
@@ -59,7 +59,7 @@ export const Button2 = ({querydata}) => {
  export const Button3 = ({querydata, buttons={}, href='', status=''}) => {
     const [query, setQuery] = useState([])
     const [content, setContent] = useState([])
-    const [selectBtn, setSelectedBtn] = useState([])
+    const [selectBtn, setSelectedBtn] = useState([]) 
     // const url = `${href}/${querydata.id}`;
     
     useEffect(() => { queryBuilder(querydata).then((data) => { 
@@ -67,7 +67,7 @@ export const Button2 = ({querydata}) => {
         })
       
         setSelectedBtn(buttons[status])
-    }, [])
+    }, [querydata, status, buttons])
 
 
     async function remove_formfield(el) {
@@ -80,20 +80,21 @@ export const Button2 = ({querydata}) => {
     
     return (
         <div>
-            {selectBtn.map( (data, i) => {
+            {selectBtn? selectBtn.map( (data, i) => {
 
                 return(
                     <a  
+                        title={data.tooltip}
                         data-obj={JSON.stringify(querydata)}
-                        key={`id_dsa344423454_${i}`}
-                        className={`${data.classname}`}
+                        key={`id_dsa34r34423454_${i}`}
+                        className={`${data.classname} buttonx`}
                         href={`${data.href}/${query}`}> 
                         {data.name}
                     </a>
                 )
 
-            })}
-            <button onClick={remove_formfield} className='btn btn-sm btn-danger' data-unique_id={querydata.id}>Delete </button>
+            }) : []}
+            <button onClick={remove_formfield} className='btn btn-sm btn-danger buttonx' data-unique_id={querydata.id}>Delete </button>
         </div>
     )
 

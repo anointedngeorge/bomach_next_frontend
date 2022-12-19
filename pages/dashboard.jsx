@@ -7,7 +7,7 @@ import React from 'react'
 
 
 
-export default function dashboard() {
+export default function Dashboard() {
   return (
     <Layout1 >
       <AppHead title={`Bomach Group | `} />

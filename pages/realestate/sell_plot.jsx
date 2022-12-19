@@ -5,7 +5,7 @@ import { Customer } from 'components/lib/Customer';
 import { settings_form, _settingFormWithConfirmationPrompt } from 'functions';
 
 
-export default function sell_plot() {
+export default function Sell_plot() {
 
     const router = useRouter();
     const qy = router.query

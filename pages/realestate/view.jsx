@@ -30,14 +30,14 @@ export default function View(){
           setContent2(data.data);  
       });
 
-        setInterval(() => {
-            get_xrh_data(`${process.env.main}/formfield/get-formfield/${param}/`, false).then(data => {
-                setFormfield(data.data);  
-            });
-            get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
-                setContent2(data.data);  
-            });
-      }, 40000);
+      //   setInterval(() => {
+      //       get_xrh_data(`${process.env.main}/formfield/get-formfield/${param}/`, false).then(data => {
+      //           setFormfield(data.data);  
+      //       });
+      //       get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
+      //           setContent2(data.data);  
+      //       });
+      // }, 40000);
    }, [param])
 
    async function remove_formfield(el) {
@@ -46,6 +46,7 @@ export default function View(){
       delete_xrh_data(url)
       
   }
+
 
   return (
     <Layout1 >
@@ -89,6 +90,12 @@ export default function View(){
               title:'View Plot', 
               modalclassid:'modal_container', 
               classname:'btn btn-sm btn-warning', show_modal:false
+              },
+            
+              {pagename:`view_related_payment`, 
+              title:'Payments', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-primary', show_modal:false
               },
 
             ]
