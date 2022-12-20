@@ -20,6 +20,7 @@
     "next-session": "^4.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
     "react-key-index": "^0.1.1",
     "react-use-websocket": "^4.2.0"
   }

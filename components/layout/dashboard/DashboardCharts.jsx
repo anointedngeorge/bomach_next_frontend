@@ -41,7 +41,7 @@ export const DashboardCharts = () => {
       }
 
       return () => {
-        myChart.current.destroy()
+        myChart.destroy()
       }
 
     }, [])

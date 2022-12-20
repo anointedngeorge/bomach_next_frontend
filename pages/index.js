@@ -1,4 +1,5 @@
 import { Login } from 'components/auth/Login'
+import { AppHead } from 'components/lib/AppHead'
 import { authentication, authentication_token } from 'functions'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -10,9 +11,12 @@ export default function Home() {
   
   return (
     
-    <form onSubmit={authentication} className='form' method='POST' action={`${process.env.auth}/login/token`} >
-      <Login />
-    </form>
+    <div>
+    <AppHead title='Login Page'  />
+      <form onSubmit={authentication} className='form' method='POST' action={`${process.env.auth}/login/token`} >
+        <Login />
+      </form>
+    </div>
     
   )
 }

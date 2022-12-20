@@ -7,24 +7,22 @@ export const Cards = () => {
   useEffect( () => {
     const url = `${process.env.main}/general/get-count`
     get_xrh_data(url, false).then(data => {
-        
-        try {
-            setContent(data.data)
-        } catch (error) {
-          setContent([])
-        }
+      setContent(data.data);
     })
   }, [] )
+
+
   return (
     <div className="row">
+         
             <div className="col-xl-3 col-md-6">
               <div className="card bg-primary text-white mb-4">
                 <div className="card-body">Estate Section</div>
                 <div className="card-footer d-flex align-items-center justify-content-between">
                   <a className="small text-white stretched-link" href="#">View Details</a>
                   <div className="small text-white"><i className="fas fa-angle-right" />
-                    <h4>
-                    {/* {`(${JSON.stringify(content['estate']['total'])})`} */}
+                    <h4 >
+                    {content['estate']? content['estate']['total'] : ''}
                     </h4>
                   </div>
                 </div>
@@ -37,7 +35,7 @@ export const Cards = () => {
                   <a className="small text-white stretched-link" href="#">View Details</a>
                   <div className="small text-white"><i className="fas fa-angle-right" />
                     <h4>
-                    {/* {`(${JSON.stringify(content['payment']['total'])})`} */}
+                    {content['payment']? content['payment']['total'] : ''}
                     </h4>
                   </div>
                 </div>
@@ -50,7 +48,7 @@ export const Cards = () => {
                   <a className="small text-white stretched-link" href="#">View Details</a>
                   <div className="small text-white"><i className="fas fa-angle-right" />
                     <h4>
-                    {/* {`(${JSON.stringify(content['customer']['total'])})`} */}
+                    {content['customer']? content['customer']['total'] : ''}
                     </h4>
                   </div>
                 </div>
@@ -63,12 +61,14 @@ export const Cards = () => {
                   <a className="small text-white stretched-link" href="#">View Details</a>
                   <div className="small text-white"><i className="fas fa-angle-right" />
                     <h4>
-                    {/* {`(${JSON.stringify(content['employee']['total'])})`} */}
+                    {content['employee']? content['employee']['total'] : ''}
                     </h4>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+           
+            
+    </div>
   )
 }

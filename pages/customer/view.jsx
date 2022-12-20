@@ -7,7 +7,7 @@ import { Tabledata } from 'components/lib/Tabledata';
 import { Modal } from 'components/lib/Modal';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
-
+import * as icons from "react-icons/bs";
 
 
 
@@ -69,11 +69,37 @@ export default function View(props){
         button={[]}
         pages={
             [
-             {pagename:`${param}/view_single`, 
-            title:'View', 
-            modalclassid:'modal_container', 
-            classname:'btn btn-sm btn-primary', show_modal:false
-            },
+              {pagename:`${param}/view_single`, 
+              title:'View', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-primary', show_modal:true,
+              icon:'BsFillArchiveFill',
+              iconsize:'20px'
+              },
+
+              {pagename:`${param}/view_related_payment`, 
+              title:'Email', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-dark', show_modal:true,
+              icon:'BsFillChatSquareDotsFill',
+              iconsize:'20px'
+              },
+
+              {pagename:`whatsapp`, 
+              title:'whatsapp', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-success', show_modal:true,
+              icon:'BsWhatsapp',
+              iconsize:'20px'
+              },
+              
+              {pagename:`${param}/view_related_payment`, 
+              title:'payments', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-warning', show_modal:true,
+              icon:'BsFillCartCheckFill',
+              iconsize:'20px'
+              },
             ]
         }
         remove_xrh_data={remove_formfield}

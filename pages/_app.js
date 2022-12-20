@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   return(
     <div>
       <Component {...pageProps} />
-      <AppScript path='./' />
+      {/* <AppScript path='' /> */}
     </div>
       
   )

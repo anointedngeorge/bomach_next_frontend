@@ -1,7 +1,7 @@
 import { delete_xrh_data, get_xrh_data, queryBuilder, _iframe_func } from 'functions'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import { Button, Button2, Button3 } from './Buttons';
-
+import * as icons from "react-icons/bs";
 
 
 
@@ -15,6 +15,9 @@ export const Tabledata = ({
 }) => {
     const counter = 1;
     const [query, setQuery] = useState([])
+    
+
+
     useEffect(() => {
         queryBuilder(tbody).then(data => { setQuery(data); })
     }, [tbody])
@@ -23,9 +26,10 @@ export const Tabledata = ({
 
     }
 
+
   return (
     <div className='row table-responsive'>
-        <table className='table table-sm'>
+        <table className='table table-sm' style={{fontSize:'12px'}}>
             <thead>
                 <tr>
                     <td>#</td>
@@ -67,6 +71,7 @@ export const Tabledata = ({
                         }
 
                         <td>
+                        
                             <button
                             onClick={remove_xrh_data || remove_default}
                             data-unique_id={data2.id}
@@ -86,8 +91,6 @@ export const Tabledata = ({
 
 
 
-
-
 export const Table2 = ({
     thead=[], 
     tbody=[], 
@@ -95,7 +98,7 @@ export const Table2 = ({
 
   return (
     <div className='row'>
-        <table className='table table-sm'>
+        <table className='table table-sm' style={{fontSize:'12px'}}>
             <thead>
                 <tr>
                     {thead.map((data, i) => {
@@ -125,6 +128,7 @@ export const Table2 = ({
                             )
                         })}
                         <td>
+                            
                            <Button2 key={`id_dasfda_${i}`}  querydata={data2}  />
                         </td>
                     </tr>
@@ -150,7 +154,7 @@ export const Table3 = ({
    
    
         <div className='table-responsive'>
-        <table className='table table-sm'>
+        <table className='table table-sm' style={{fontSize:'12px'}}>
             <thead>
                 <tr>
                     {thead.map((data, i) => {

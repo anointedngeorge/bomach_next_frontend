@@ -1,5 +1,15 @@
 import React, {useEffect, useReducer, useState} from 'react'
 import { delete_xrh_data, get_xrh_data, queryBuilder, _iframe_func } from 'functions'
+import * as icons from "react-icons/bs";
+
+
+
+export const IconData = ({icon='', fontSize='12px'}) => {
+    const Iconx = icons[icon || 'BsFillCaretLeftFill']
+    return (
+        <Iconx fontSize={fontSize} />
+    )
+}
 
 export const Button = ({query, pages=[], current_param=''}) => {
     const [get_query, setQuery ] = useState({});
@@ -12,16 +22,7 @@ export const Button = ({query, pages=[], current_param=''}) => {
             {pages.map((data, i) => {
                 {/* const d = {pagename:'',title:'',modalclass:''} */}
                 return data.show_modal == true? (
-                    <td key={`id_asdas343403434_${i}`}>
-                        <a 
-                        className={`${data.classname} ${data.modalclassid}`}
-                        href={`/${data.pagename}/${get_query}`}
-                        data-container={`${data.modalclassid}`}
-                        onClick={_iframe_func}
-                        >{data.title}</a>
-                    </td>
-                ) : (
-                        <td key={`id_asdas34340_${i}`}>
+                    <td key={`id_asdas34340_${i}`}>
                         <a
                         data-toggle="modal"
                         data-target=".bd-example-modal-lg"
@@ -29,8 +30,31 @@ export const Button = ({query, pages=[], current_param=''}) => {
                         href={`/${data.pagename}/${get_query}`}
                         data-container={`${data.modalclassid}`}
                         onClick={_iframe_func}
-                        >{data.title}</a>
+                        >
+                        <span className='mr-1'>
+                        <IconData icon={data.icon} fontSize={data.iconsize} />
+                        </span>
+                        <span>
+                        {data.title}
+                        </span>
+                        </a>
                         </td>
+                ) : (
+                    <td key={`id_asdas343403434_${i}`}>
+                        <a 
+                        className={`${data.classname} ${data.modalclassid}`}
+                        href={`/${data.pagename}/${get_query}`}
+                        data-container={`${data.modalclassid}`}
+                        onClick={_iframe_func}
+                        >
+                        <span className='mr-1'>
+                        <IconData icon={data.icon} fontSize={data.iconsize} />
+                        </span>
+                        <span>
+                        {data.title}
+                        </span>
+                        </a>
+                    </td>
                     )
             })} 
             
@@ -89,7 +113,12 @@ export const Button2 = ({querydata}) => {
                         key={`id_dsa34r34423454_${i}`}
                         className={`${data.classname} buttonx`}
                         href={`${data.href}/${query}`}> 
+                        <span className='mr-1'>
+                        <IconData icon={data.icon} fontSize={data.iconsize} />
+                        </span>
+                        <span>
                         {data.name}
+                        </span>
                     </a>
                 )
 

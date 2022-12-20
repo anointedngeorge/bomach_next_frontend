@@ -7,7 +7,7 @@ import { Tabledata, Table3 } from 'components/lib/Tabledata';
 import { Modal } from 'components/lib/Modal';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
-
+import * as icons from "react-icons/bs";
 
 
 
@@ -66,7 +66,10 @@ export default function View(props){
         buttons={{
                 "pending":[
                   {name:'Attend to', href:'/confirm_payment', 
-                        classname:'btn btn-sm btn-warning', tooltip:'Attend to this Application'},
+                        classname:'btn btn-sm btn-warning', tooltip:'Attend to this Application',
+                        icon:'BsWhatsapp',
+                        iconsize:'20px'
+                    },
                 ],
               }}
         remove_xrh_data={remove_formfield}

@@ -6,3 +6,13 @@
     employee: 'http://127.0.0.1:8087',
     'test_estate':'http://127.0.0.1:8084'
   },
+
+
+
+env: {
+    main:       'https://main.bgbot.app',
+    auth:       'https://auth.bgbot.app',
+    realestate: 'https://realestate.bgbot.app',
+    customer: 'https://customer.bgbot.app',
+    employee: 'https://employee.bgbot.app',
+  },
