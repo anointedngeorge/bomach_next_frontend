@@ -26,12 +26,12 @@ export  const NAVIGATION = [
     {id:'settings',name:'Settings', icon:'', href:'', 'has_dropdown':true, sub:[
         {name:'Create Form Fields', 
         href:'/settings/formfield?param=formfield&title=Create Form Field', icon:''},
-        {name:'Alter Formfields', 
+        {name:'Alter Form fields', 
         href:'/settings/formfieldsettings?param=formfield&title=Edit Form Field', icon:''},
         {name:'Create Forms', 
         href:'/settings/forms?param=forms&title=Create Form', icon:''},
-        {name:'Add Attachment', 
-        href:'/settings/attachment?param=attachment&title=Add attachment', icon:''},
+        {name:'Company Branch', 
+        href:'/settings/branch?param=branch&title=Companies Branch', icon:''},
         
     ]}
 ]

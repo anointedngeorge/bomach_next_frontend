@@ -148,7 +148,8 @@ export const Table3 = ({
     thead=[], 
     tbody=[],
     buttons={},
-    href=''
+    href='',
+    remove_delete_fun=''
 }) => {
   return (
    
@@ -187,6 +188,7 @@ export const Table3 = ({
                             buttons={buttons}
                             href={href}
                             status={data2.status}
+                            remove_delete_fun={remove_delete_fun}
                         />
                         
                         </td>

@@ -80,7 +80,13 @@ export const Button2 = ({querydata}) => {
 
 
 
- export const Button3 = ({querydata, buttons={}, href='', status=''}) => {
+ export const Button3 = ({
+    querydata, 
+    buttons={}, 
+    href='', 
+    status='',
+    remove_delete_fun=''
+    }) => {
     const [query, setQuery] = useState([])
     const [content, setContent] = useState([])
     const [selectBtn, setSelectedBtn] = useState([]) 
@@ -123,7 +129,7 @@ export const Button2 = ({querydata}) => {
                 )
 
             }) : []}
-            <button onClick={remove_formfield} className='btn btn-sm btn-danger buttonx' data-unique_id={querydata.id}>Delete </button>
+            <button onClick={remove_delete_fun || remove_formfield} className='btn btn-sm btn-danger buttonx' data-unique_id={querydata.id}>Delete </button>
         </div>
     )
 

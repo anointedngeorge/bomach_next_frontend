@@ -17,12 +17,12 @@ export default function Create(props){
     const { param, title} = router.query
     const [content, setContent] = useState([])
 
-   async function fun_data(params) {
-    await get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
-        setContent(data.data);  
-    });
-   }
-   fun_data()
+    useEffect(()=>{
+      get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
+            setContent(data.data);  
+        });
+   
+    }, [])
 
    
   return (

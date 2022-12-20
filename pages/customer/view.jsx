@@ -45,9 +45,7 @@ export default function View(props){
     const id = el.target.dataset['unique_id'];
     const url = `${process.env.customer}/customer/delete-customer/${id}/`
     delete_xrh_data(url)
-   
-    
-}
+  }
 
   return (
     <Layout1 user={props.user} user_status={props.user_status} >

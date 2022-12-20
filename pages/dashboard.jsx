@@ -18,7 +18,7 @@ export default function Dashboard(props) {
 
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
-      <AppHead title={`Bomach Group | ${title} `} />
+      <AppHead title={`Bomach Group | Welcome to bomach Group`} />
       <main>
       {/* {JSON.stringify(props)} */}
         <div className="container-fluid px-4">
