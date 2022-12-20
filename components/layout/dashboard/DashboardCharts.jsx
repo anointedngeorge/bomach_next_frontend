@@ -1,5 +1,5 @@
 import { Table3 } from 'components/lib/Tabledata'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
 
@@ -8,22 +8,20 @@ import { getRelativePosition } from 'chart.js/helpers';
 
 
 export const DashboardCharts = () => {
-  let myChart = null;
-
-
-
-  (async function() {
-    const data = [
-      { year: 2010, count: 10 },
-      { year: 2011, count: 20 },
-      { year: 2012, count: 15 },
-      { year: 2013, count: 25 },
-      { year: 2014, count: 22 },
-      { year: 2015, count: 30 },
-      { year: 2016, count: 28 },
-    ];
   
+
+
     useEffect(() => {
+      let myChart = null;
+      const data = [
+        { year: 2010, count: 10 },
+        { year: 2011, count: 20 },
+        { year: 2012, count: 15 },
+        { year: 2013, count: 25 },
+        { year: 2014, count: 22 },
+        { year: 2015, count: 30 },
+        { year: 2016, count: 28 },
+      ];
       if (document) {
           myChart = new Chart(
           document.getElementById('acquisitions'),
@@ -43,17 +41,12 @@ export const DashboardCharts = () => {
       }
 
       return () => {
-        myChart.destroy()
+        myChart.current.destroy()
       }
 
     }, [])
     
-  })();
   
-
-
-
-
   
   return (
     <div className="row">
