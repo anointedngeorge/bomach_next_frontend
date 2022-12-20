@@ -22,7 +22,7 @@ export default function Create(props){
             setContent(data.data);  
         });
    
-    }, [])
+    }, [param])
 
    
   return (
