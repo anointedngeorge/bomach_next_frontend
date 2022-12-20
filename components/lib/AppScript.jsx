@@ -10,9 +10,9 @@ export const AppScript = ({path = './'}) => {
         crossOrigin="anonymous"></Script>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" 
         crossOrigin="anonymous"></Script>
-        <Script strategy="afterInteractive" type="text/javascript" src={path+"bomach/js/scripts.js"} />
-        <Script  strategy="afterInteractive" type="text/javascript" src={path+"bomach/assets/demo/chart-area-demo.js"} />
-        <Script strategy="afterInteractive" type="text/javascript"  src={path+"bomach/assets/demo/chart-bar-demo.js"} />
+        <Script strategy="beforeInteractive" type="text/javascript" src={path+"bomach/js/scripts.js"} />
+        {/* <Script  strategy="afterInteractive" type="text/javascript" src={path+"bomach/assets/demo/chart-area-demo.js"} />
+        <Script strategy="afterInteractive" type="text/javascript"  src={path+"bomach/assets/demo/chart-bar-demo.js"} /> */}
         <Script type="text/javascript" src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" 
         crossOrigin="anonymous" />
         {/* <Script strategy="afterInteractive" type="text/javascript" src={path+"bomach/js/datatables-simple-demo.js"} /> */}

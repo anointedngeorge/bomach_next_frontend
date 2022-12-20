@@ -7,14 +7,18 @@ import { AppScript } from 'components/lib/AppScript'
 import { authentication_token } from 'functions'
 import Head from 'next/head'
 import Script from 'next/script'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useRouter } from 'next/router';
 
 
 
 export default function Dashboard(props) {
+  const router = useRouter();
+  const {param, title} = router.query
+
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
-      <AppHead title={`Bomach Group | `} />
+      <AppHead title={`Bomach Group | ${title} `} />
       <main>
       {/* {JSON.stringify(props)} */}
         <div className="container-fluid px-4">

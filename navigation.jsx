@@ -1,6 +1,7 @@
 export  const NAVIGATION = [
     {id:'dashboard', name:'Dashboard', 
-    icon:'', href:'/dashboard', 'has_dropdown':false, sub:[]},    
+    icon:'', href:'/dashboard?param=dashboard&title=Welcome to bomach0.1', 'has_dropdown':false, sub:[]},    
+    
     {name:'Real Estate', icon:'', href:'', 'has_dropdown':true, sub:[
         {name:'Create Estate', 
         href:'/realestate/create?param=realestate&title=Real Estate Section', icon:''},
