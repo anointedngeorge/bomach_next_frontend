@@ -11,13 +11,12 @@ export const Tabledata = ({
     tbody=[], 
     current_param='', pages=[],
     show_button=true,
-    remove_xrh_data=""
+    remove_xrh_data="",
+    fontsize='12px'
 }) => {
     const counter = 1;
     const [query, setQuery] = useState([])
     
-
-
     useEffect(() => {
         queryBuilder(tbody).then(data => { setQuery(data); })
     }, [tbody])
@@ -29,7 +28,7 @@ export const Tabledata = ({
 
   return (
     <div className='row table-responsive'>
-        <table className='table table-sm' style={{fontSize:'12px'}}>
+        <table className='table table-sm' style={{fontSize:fontsize}}>
             <thead>
                 <tr>
                     <td>#</td>
@@ -94,11 +93,12 @@ export const Tabledata = ({
 export const Table2 = ({
     thead=[], 
     tbody=[], 
+    fontsize='12px'
 }) => {
 
   return (
     <div className='row'>
-        <table className='table table-sm' style={{fontSize:'12px'}}>
+        <table className='table table-sm' style={{fontSize:fontsize}}>
             <thead>
                 <tr>
                     {thead.map((data, i) => {
@@ -149,13 +149,14 @@ export const Table3 = ({
     tbody=[],
     buttons={},
     href='',
-    remove_delete_fun=''
+    remove_delete_fun='',
+    fontsize='12px'
 }) => {
   return (
    
    
         <div className='table-responsive'>
-        <table className='table table-sm' style={{fontSize:'12px'}}>
+        <table className='table table-sm' style={{fontSize:fontsize}}>
             <thead>
                 <tr>
                     {thead.map((data, i) => {

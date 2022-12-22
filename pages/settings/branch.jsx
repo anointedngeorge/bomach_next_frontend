@@ -92,6 +92,7 @@ export default function Create(props){
             tbody={content}
             href={`${process.env.main}/branch/delete-branch`}
             remove_delete_fun={remove_formfield}
+            fontsize='15px'
           />
         </div>
           
