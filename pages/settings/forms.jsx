@@ -2,13 +2,13 @@ import { AppScript } from 'components/lib/AppScript'
 import Script from 'next/script'
 import React, {useEffect, useState} from 'react'
 import { useRouter } from 'next/router';
-import { authentication_token, get_xrh_data, settings_form } from 'functions';
+import { authentication_token, get_xrh_data, settings_form,delete_xrh_data } from 'functions';
 import { DynamicFormData } from 'components/lib/DynamicForm';
 import { Services } from 'components/lib/Services';
 import { FORMTYPE } from 'navigation';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
-import { Table2 } from 'components/lib/Tabledata';
+import { Table2, Tabledata } from 'components/lib/Tabledata';
 
 
 export default function Create(props){
@@ -29,11 +29,11 @@ export default function Create(props){
             setContent(data.data);  
         });
 
-        setInterval(() => {
-            get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
-                setContent(data.data);  
-            });
-        }, 60000);
+        // setInterval(() => {
+        //     get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
+        //         setContent(data.data);  
+        //     });
+        // }, 60000);
     }, [param])
 
 
@@ -50,6 +50,13 @@ export default function Create(props){
         });
   }
    
+  async function remove_formfield(el) {
+    const id = el.target.dataset['unique_id'];
+    const url = `${process.env.main}/form/delete-form/${id}/`
+    delete_xrh_data(url)
+}
+
+
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
       <AppHead title={`Bomach Group | ${title}`} />
@@ -182,9 +189,13 @@ export default function Create(props){
         </form>
     
         <div className='mt-4'>
-        <Table2 
+        <Tabledata 
         tbody={formfield2} 
-        thead={['title','form_service','form_type','form_element']} />
+        thead={['title','form_service','form_type','form_element']} 
+        remove_xrh_data={remove_formfield}
+        fontsize="15px"
+        />
+        
         </div>
     </div>
     <AppScript path='../../' />

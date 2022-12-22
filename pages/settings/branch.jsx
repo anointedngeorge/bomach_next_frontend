@@ -38,6 +38,7 @@ export default function Create(props){
    async function remove_formfield(el) {
     const id = el.target.dataset['unique_id'];
     const url = `${process.env.main}/branch/delete-branch/${id}/`
+
     delete_xrh_data(url)
   }
    
@@ -87,11 +88,10 @@ export default function Create(props){
           </form>
 
         <div className='col-lg-12'>
-          <Table3
+          <Tabledata
             thead={['name','phone_number','description']}
             tbody={content}
-            href={`${process.env.main}/branch/delete-branch`}
-            remove_delete_fun={remove_formfield}
+            remove_xrh_data={remove_formfield}
             fontsize='15px'
           />
         </div>

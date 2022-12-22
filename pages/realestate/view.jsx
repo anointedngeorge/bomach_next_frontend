@@ -41,7 +41,6 @@ export default function View(props){
       const id = el.target.dataset['unique_id'];
       const url = `${process.env.realestate}/estate/delete-estate/${id}/`
       delete_xrh_data(url)
-      
   }
 
 
