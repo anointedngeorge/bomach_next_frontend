@@ -127,9 +127,13 @@ export async function delete_xrh_data(path = '') {
               url:base_url,
               method:'delete',
               headers: Headers,
-          })
+          }).then(data => {
+            JSAlert.alert(JSON.stringify(data.data.message))
+        }).catch(error => {
+            JSAlert.alert(JSON.stringify(error.message))
+        })
 
-      return obj;
+      // return obj;
     }
    
 }
