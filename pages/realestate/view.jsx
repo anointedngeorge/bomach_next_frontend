@@ -26,18 +26,15 @@ export default function View(props){
             setFormfield(data.data);  
         });
 
-      get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
-          setContent2(data.data);  
-      });
+        get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
+            setContent2(data.data);  
+        });
 
-      //   setInterval(() => {
-      //       get_xrh_data(`${process.env.main}/formfield/get-formfield/${param}/`, false).then(data => {
-      //           setFormfield(data.data);  
-      //       });
-      //       get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
-      //           setContent2(data.data);  
-      //       });
-      // }, 40000);
+        setInterval(() => {
+            get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
+                setContent2(data.data);  
+            });
+      }, 60000);
    }, [param])
 
    async function remove_formfield(el) {

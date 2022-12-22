@@ -22,6 +22,17 @@ export default function Create(props){
       get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
         setContent(data.data);  
     });
+
+    get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
+      setContent(data.data);  
+  });
+
+    setInterval( () => {
+        get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
+          setContent(data.data);  
+      });
+    }, 600000)
+
     }, [])
 
    async function remove_formfield(el) {

@@ -28,6 +28,12 @@ export default function Create(props){
         get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
             setContent(data.data);  
         });
+
+        setInterval(() => {
+            get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
+                setContent(data.data);  
+            });
+        }, 60000);
     }, [param])
 
 

@@ -244,7 +244,7 @@ export async function settings_form(el) {
   const data = await object_json(elements)
 
   const url2 = el.target.action;
-  console.log(url2)
+  // console.log(url2)
   await axios({
       url:url2,
       method: 'POST',
