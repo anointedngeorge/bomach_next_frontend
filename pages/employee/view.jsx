@@ -28,11 +28,11 @@ export default function View(props){
           setContent2(data.data);  
       });
 
-      setInterval(() => {
-        get_xrh_data(`${process.env.employee}/employee/get-employee/`, false).then(data => {
-            setContent2(data.data);  
-        });
-      }, process.env.interval);
+      // setInterval(() => {
+      //   get_xrh_data(`${process.env.employee}/employee/get-employee/`, false).then(data => {
+      //       setContent2(data.data);  
+      //   });
+      // }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {
