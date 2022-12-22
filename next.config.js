@@ -9,7 +9,7 @@ const nextConfig = {
     customer: 'https://customer.bgbot.app',
     employee: 'https://employee.bgbot.app',
 
-    interval:0,
+    interval:40000,
   },
   images: {
     domains: ["drive.google.com"]
