@@ -34,7 +34,7 @@ export default function View(props){
             get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
                 setContent2(data.data);  
             });
-      }, 60000);
+      }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {

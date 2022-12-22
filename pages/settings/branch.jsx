@@ -27,11 +27,11 @@ export default function Create(props){
       setContent(data.data);  
   });
 
-    setInterval( () => {
-        get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
-          setContent(data.data);  
-      });
-    }, 600000)
+    // setInterval( () => {
+    //     get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
+    //       setContent(data.data);  
+    //   });
+    // }, process.env.interval)
 
     }, [])
 

@@ -31,14 +31,10 @@ export default function View(props){
       });
 
       setInterval(() => {
-        get_xrh_data(`${process.env.main}/formfield/get-formfield/${param}/`, false).then(data => {
-          setFormfield(data.data);  
-      });
-      
-    get_xrh_data(`${process.env.customer}/customer/get-customer/`, false).then(data => {
-        setContent2(data.data);  
-    });
-      }, 30000);
+        get_xrh_data(`${process.env.customer}/customer/get-customer/`, false).then(data => {
+            setContent2(data.data);  
+        });
+      }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {
