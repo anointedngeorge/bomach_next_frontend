@@ -34,27 +34,27 @@ export const Tabledata = ({
                 <tr>
                     <td>#</td>
                     {thead.map((data, i) => {
-                        const head =  `${data.field}`.split('_').join(' ');
+                        const head =  data.field !== undefined? `${data.field}`.split('_').join(' ') : `${data}`.split('_').join(' ');
                         
                         return (
                             <td key={`id_asdfe_${i}`}>
-                                {`${head}`.toLocaleUpperCase()}
+                                {`${head}`.toLocaleUpperCase() || `${data}`.toLocaleUpperCase()}
                             </td>
                         )
                     })}
                     <td>...</td>
-                    <td>...</td> 
+            
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody className='tabledata'>
                 {tbody.map((data2, i) => {
-                    
                     return (
                         <tr key={`id_data_${i}`}>
                         <td>{counter + i}</td>
                         {thead.map((data3, i) => {
-                            const head =  `${data3.field}`.split(' ').join('_');
+                            const head = data3.field !== undefined ? `${data3.field}`.split(' ').join('_') : 
+                                                    `${data3}`.split(' ').join('_');
                             return (
                                 <td key={`id_343dsd_${i}`}>
                                     {data2[head]}
@@ -62,6 +62,7 @@ export const Tabledata = ({
                             )
                         })}
                         
+                        <td>
                         {show_button?
                             <Button 
                             query={data2} 
@@ -70,15 +71,14 @@ export const Tabledata = ({
                             /> : ''
                         }
 
-                        <td>
-                        
-                            <button
+                        <button
                             onClick={remove_xrh_data || remove_default}
                             data-unique_id={data2.id}
                             className='btn btn-sm btn-danger'>
                                 Remove
                             </button>
                         </td>
+                      
                     </tr>
                     )
                 })}

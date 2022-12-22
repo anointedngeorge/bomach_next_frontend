@@ -18,3 +18,14 @@ a.buttonx {
   display:inline-block;
   margin:1.7px;
 }
+
+div.div-button-container {
+  display: inline-flex;
+}
+
+div.div-button-container a, button {
+  margin-right:1.8px;
+  vertical-align: top;
+  font-size: 12px;
+}
+

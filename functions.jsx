@@ -24,6 +24,7 @@ export const service_iframe_func = async function(el) {
     export const _iframe_func = async function(el) {
       el.preventDefault();
         const href =  el.target.href;
+        
         const container = el.target.dataset['container']
         const iframe_obj = `<iframe src='${href}'></iframe>`
         document.getElementById(container).innerHTML = iframe_obj;

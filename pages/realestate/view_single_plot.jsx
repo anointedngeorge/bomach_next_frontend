@@ -43,9 +43,10 @@ const View_single = () => {
         buttons={
           {
             "available":[
-                {name:'sell', href:'/realestate/sell_plot', classname:'btn btn-sm btn-info',tooltip:'Sell this plot'},
+                {name:'sell', href:'/realestate/sell_plot', classname:'btn btn-sm btn-warning',tooltip:'Sell this plot'},
                 {name:'Add Files', href:'/gallery', classname:'btn btn-sm btn-warning',tooltip:'Add Attachment'},
-                {name:'View Files', href:'/view_gallery', classname:'btn btn-sm btn-info', tooltip:'View Attachment'},
+                {name:'View Files', href:'/view_gallery', classname:'btn btn-sm btn-warning', tooltip:'View Attachment'},
+                {name:'property titles', href:'/realestate/editor', classname:'btn btn-sm btn-warning', tooltip:'View Property Title'},
               ],
             "pending":[
               {name:'Confirm', href:'/confirm_payment', classname:'btn btn-sm btn-warning', tooltip:'Confirm Payment'},

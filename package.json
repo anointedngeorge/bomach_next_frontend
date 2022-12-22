@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+    "@ckeditor/ckeditor5-react": "^5.0.3",
     "axios": "^1.2.1",
     "chart.js": "^4.1.1",
     "countries-states-cities": "^1.0.6",
@@ -22,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-key-index": "^0.1.1",
-    "react-use-websocket": "^4.2.0"
+    "react-use-websocket": "^4.2.0",
+    "window": "^1.0.0"
   }
 }

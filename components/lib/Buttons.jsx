@@ -22,7 +22,7 @@ export const Button = ({query, pages=[], current_param=''}) => {
             {pages.map((data, i) => {
                 {/* const d = {pagename:'',title:'',modalclass:''} */}
                 return data.show_modal == true? (
-                    <td key={`id_asdas34340_${i}`}>
+                    <div className='div-button-container' key={`id_asdas34340_${i}`}>
                         <a
                         data-toggle="modal"
                         data-target=".bd-example-modal-lg"
@@ -31,30 +31,30 @@ export const Button = ({query, pages=[], current_param=''}) => {
                         data-container={`${data.modalclassid}`}
                         onClick={_iframe_func}
                         >
-                        <span className='mr-1'>
+                        {/* <i className='mr-1'> */}
                         <IconData icon={data.icon} fontSize={data.iconsize} />
-                        </span>
-                        <span>
+                        {/* </i> */}
+                        {/* <i> */}
                         {data.title}
-                        </span>
+                        {/* </i> */}
                         </a>
-                        </td>
+                        </div>
                 ) : (
-                    <td key={`id_asdas343403434_${i}`}>
+                    <div className='div-button-container' key={`id_asdas343403434_${i}`}>
                         <a 
                         className={`${data.classname} ${data.modalclassid}`}
                         href={`/${data.pagename}/${get_query}`}
                         data-container={`${data.modalclassid}`}
                         onClick={_iframe_func}
                         >
-                        <span className='mr-1'>
+                        {/* <span className='mr-1'> */}
                         <IconData icon={data.icon} fontSize={data.iconsize} />
-                        </span>
-                        <span>
+                        {/* </span> */}
+                        {/* <span> */}
                         {data.title}
-                        </span>
+                        {/* </span> */}
                         </a>
-                    </td>
+                    </div>
                     )
             })} 
             
@@ -119,12 +119,12 @@ export const Button2 = ({querydata}) => {
                         key={`id_dsa34r34423454_${i}`}
                         className={`${data.classname} buttonx`}
                         href={`${data.href}/${query}`}> 
-                        <span className='mr-1'>
+                        {/* <span className='mr-1'> */}
                         <IconData icon={data.icon} fontSize={data.iconsize} />
-                        </span>
-                        <span>
+                        {/* </span>
+                        <span> */}
                         {data.name}
-                        </span>
+                        {/* </span> */}
                     </a>
                 )
 

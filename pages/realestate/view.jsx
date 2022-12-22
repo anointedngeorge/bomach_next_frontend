@@ -70,32 +70,40 @@ export default function View(props){
              {pagename:`${param}/view_single`, 
             title:'View', 
             modalclassid:'modal_container', 
-            classname:'btn btn-sm btn-primary', show_modal:false
+            classname:'btn btn-sm btn-primary', show_modal:true
             
             },
 
             {pagename:`${param}/view_single`, 
             title:'Edit', 
             modalclassid:'modal_container', 
-            classname:'btn btn-sm btn-warning', show_modal:false
+            classname:'btn btn-sm btn-warning', show_modal:true
             },
 
             {pagename:`${param}/create_plot`, 
               title:'Create Plot', 
               modalclassid:'modal_container', 
-              classname:'btn btn-sm btn-info', show_modal:false
+              classname:'btn btn-sm btn-info', show_modal:true
               },
 
             {pagename:`${param}/view_single_plot`, 
               title:'View Plot', 
               modalclassid:'modal_container', 
-              classname:'btn btn-sm btn-warning', show_modal:false
+              classname:'btn btn-sm btn-warning', show_modal:true
+              },
+
+              {pagename:`${param}/extra_fees`, 
+              title:'Extra Fees', 
+              modalclassid:'modal_container', 
+              classname:'btn btn-sm btn-dark', show_modal:true,
+              icon:'BsFillBookmarkFill',
+              iconsize:'11px'
               },
             
               {pagename:`view_related_payment`, 
               title:'Payments', 
               modalclassid:'modal_container', 
-              classname:'btn btn-sm btn-primary', show_modal:false
+              classname:'btn btn-sm btn-primary', show_modal:true
               },
 
             ]
