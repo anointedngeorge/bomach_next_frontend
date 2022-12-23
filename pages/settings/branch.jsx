@@ -24,23 +24,22 @@ export default function Create(props){
     });
 
     get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
-      setContent(data.data);  
-  });
-
-    // setInterval( () => {
-    //     get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
-    //       setContent(data.data);  
-    //   });
-    // }, process.env.interval)
+        setContent(data.data);  
+    });
 
     }, [])
 
    async function remove_formfield(el) {
     const id = el.target.dataset['unique_id'];
     const url = `${process.env.main}/branch/delete-branch/${id}/`
-
     delete_xrh_data(url)
   }
+
+  function contentReloader(params) {
+    get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
+      setContent(data.data);  
+  });
+}
    
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
@@ -89,6 +88,7 @@ export default function Create(props){
 
         <div className='col-lg-12'>
           <Tabledata
+          reload_fun_content={contentReloader}
             thead={['name','phone_number','description']}
             tbody={content}
             remove_xrh_data={remove_formfield}

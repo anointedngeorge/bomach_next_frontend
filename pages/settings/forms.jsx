@@ -57,6 +57,13 @@ export default function Create(props){
 }
 
 
+async function contentReloader(params) {
+    await get_xrh_data(`${process.env.main}/formfield/get-formfield/${el.target.value}/`, 
+        false).then(data => {
+            setFormField(data.data);  
+        });
+}
+
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
       <AppHead title={`Bomach Group | ${title}`} />
@@ -189,7 +196,8 @@ export default function Create(props){
         </form>
     
         <div className='mt-4'>
-        <Tabledata 
+        <Tabledata
+        reload_fun_content={contentReloader} 
         tbody={formfield2} 
         thead={['title','form_service','form_type','form_element']} 
         remove_xrh_data={remove_formfield}
