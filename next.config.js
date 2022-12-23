@@ -8,7 +8,6 @@ const nextConfig = {
     realestate: 'https://realestate.bgbot.app',
     customer: 'https://customer.bgbot.app',
     employee: 'https://employee.bgbot.app',
-    interval:40000,
   },
   images: {
     domains: ["drive.google.com"]
