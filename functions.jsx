@@ -254,6 +254,7 @@ export async function settings_form(el) {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
+        "Access-Control-Allow-Origin": "*"
       },
       data: data
     }).then(data => {
