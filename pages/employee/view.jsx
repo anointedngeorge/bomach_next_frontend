@@ -28,20 +28,20 @@ export default function View(props){
           setContent2(data.data);  
       });
 
-      // setInterval(() => {
-      //   get_xrh_data(`${process.env.employee}/employee/get-employee/`, false).then(data => {
-      //       setContent2(data.data);  
-      //   });
-      // }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {
     const id = el.target.dataset['unique_id'];
     const url = `${process.env.employee}/employee/delete-employee/${id}/`
     delete_xrh_data(url)
-   
-    
 }
+
+function contentReloader(params) {
+  get_xrh_data(`${process.env.employee}/employee/get-employee/`, false).then(data => {
+    setContent2(data.data);  
+});
+}
+
 
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
@@ -59,6 +59,7 @@ export default function View(props){
         <Table3
         thead={['first_name','last_name','phone_number','email']}
         tbody={content2}
+        reload_fun_content={contentReloader}
         buttons={{
                 "pending":[
                   {name:'Attend to', href:'/confirm_payment', 

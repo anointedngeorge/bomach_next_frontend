@@ -29,12 +29,6 @@ export default function View(props){
         get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
             setContent2(data.data);  
         });
-
-      //   setInterval(() => {
-      //       get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
-      //           setContent2(data.data);  
-      //       });
-      // }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {
@@ -42,6 +36,14 @@ export default function View(props){
       const url = `${process.env.realestate}/estate/delete-estate/${id}/`
       delete_xrh_data(url)
   }
+
+  function contentReloader(params) {
+        get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
+          setContent2(data.data);  
+      });
+  }
+
+
 
 
   return (
@@ -61,13 +63,13 @@ export default function View(props){
         tbody={content2}
         current_param={param}
         button={[]}
+        reload_fun_content={contentReloader}
         pages={
             [
              {pagename:`${param}/view_single`, 
             title:'View', 
             modalclassid:'modal_container', 
             classname:'btn btn-sm btn-primary', show_modal:true
-            
             },
 
             {pagename:`${param}/view_single`, 

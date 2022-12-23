@@ -12,6 +12,7 @@ export const Tabledata = ({
     current_param='', pages=[],
     show_button=true,
     remove_xrh_data="",
+    reload_fun_content="",
     fontsize='12px'
 }) => {
     const counter = 1;
@@ -21,14 +22,21 @@ export const Tabledata = ({
         queryBuilder(tbody).then(data => { setQuery(data); })
     }, [tbody])
 
-    async function remove_default(el) {
-
-    }
+async function remove_default(el) {
+    alert(`
+    No Function Attached!
+    Please include one...
+    `);
+}
 
 
   return (
-    <div className='row table-responsive'>
-        <table className='table table-sm' style={{fontSize:fontsize}}>
+    <div>
+        <div className='mb-3'>
+            <button id='contentreload'  onClick={reload_fun_content || remove_default}>Reload</button>
+        </div>
+        <div className='row table-responsive'>
+        <table className='table table-sm' style={{fontSize:fontsize, maxHeight:'300px', overflow:'scroll'}}>
             <thead>
                 <tr>
                     <td>#</td>
@@ -83,6 +91,7 @@ export const Tabledata = ({
                 })}
             </tbody>
         </table>
+    </div>
     </div>
   )
 }
@@ -150,11 +159,23 @@ export const Table3 = ({
     buttons={},
     href='',
     remove_delete_fun='',
-    fontsize='12px'
+    fontsize='12px',
+    reload_fun_content=''
 }) => {
+
+    async function remove_default(el) {
+        alert(`
+        No Function Attached!
+        Please include one...
+        `);
+    }
+
+
   return (
-   
-   
+        <div>
+            <div className='mb-3'>
+            <button id='contentreload'  onClick={reload_fun_content || remove_default}>Reload</button>
+        </div>
         <div className='table-responsive'>
         <table className='table table-sm' style={{fontSize:fontsize}}>
             <thead>
@@ -199,6 +220,7 @@ export const Table3 = ({
                 })}
             </tbody>
         </table>
+        </div>
         </div>
   )
 }

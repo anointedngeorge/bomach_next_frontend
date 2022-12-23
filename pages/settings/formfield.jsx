@@ -2,12 +2,12 @@ import { AppScript } from 'components/lib/AppScript'
 import Script from 'next/script'
 import React, {useEffect, useState} from 'react'
 import { useRouter } from 'next/router';
-import { authentication_token, get_xrh_data, settings_form } from 'functions';
+import { authentication_token, delete_xrh_data, get_xrh_data, settings_form } from 'functions';
 import { DynamicFormData } from 'components/lib/DynamicForm';
 import { Services } from 'components/lib/Services';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
-import { Table2 } from 'components/lib/Tabledata';
+import { Table2, Tabledata } from 'components/lib/Tabledata';
 
 
 
@@ -33,14 +33,22 @@ export default function Create(props){
           setContent(data.data);  
       });
 
-      setInterval(() => {
-        get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
-          setContent(data.data);  
-      });
-      }, 60000);
     }, [param])
 
 
+    function contentReloader(params) {
+      get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
+        false).then(data => {
+            setFormField2(data.data);  
+        });
+    }
+
+
+    async function remove_formfield(el) {
+      const id = el.target.dataset['unique_id'];
+      const url = `${process.env.main}/formfield/delete-formfield/${id}/`
+      delete_xrh_data(url)
+    }
    
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
@@ -83,7 +91,12 @@ export default function Create(props){
     <AppScript path='../../' />
   </main>
         <div className='mt-4 col-lg-12'>
-          <Table2 tbody={formfield2} thead={['form_service','field']} />
+          <Tabledata
+            tbody={formfield2} 
+            thead={['form_service','field']}
+            reload_fun_content={contentReloader}
+            remove_xrh_data={remove_formfield}
+            />
         </div>
   </Layout1>
 

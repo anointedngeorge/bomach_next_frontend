@@ -29,3 +29,11 @@ div.div-button-container a, button {
   font-size: 12px;
 }
 
+
+
+button#contentreload {
+  border-radius: 30px;
+  /* border: 1.5px solid #1c1c1c; */
+  box-shadow: 0 1.2px 0 #000;
+  padding:3px 10px;
+}

@@ -29,18 +29,18 @@ export default function View(props){
       get_xrh_data(`${process.env.customer}/customer/get-customer/`, false).then(data => {
           setContent2(data.data);  
       });
-
-      // setInterval(() => {
-      //   get_xrh_data(`${process.env.customer}/customer/get-customer/`, false).then(data => {
-      //       setContent2(data.data);  
-      //   });
-      // }, process.env.interval);
    }, [param])
 
    async function remove_formfield(el) {
     const id = el.target.dataset['unique_id'];
     const url = `${process.env.customer}/customer/delete-customer/${id}/`
     delete_xrh_data(url)
+  }
+
+  function contentReloader(params) {
+    get_xrh_data(`${process.env.customer}/customer/get-customer/`, false).then(data => {
+      setContent2(data.data);  
+  });
   }
 
   return (
@@ -61,6 +61,7 @@ export default function View(props){
         tbody={content2}
         current_param={param}
         button={[]}
+        reload_fun_content={contentReloader}
         pages={
             [
               {pagename:`${param}/view_single`, 
