@@ -33,7 +33,9 @@ div.div-button-container a, button {
 
 button#contentreload {
   border-radius: 30px;
-  /* border: 1.5px solid #1c1c1c; */
   box-shadow: 0 1.2px 0 #000;
-  padding:3px 10px;
+  margin: 15px 0px;
+  background-color: rgb(132, 151, 168);
+  font-weight: 400;
+  color:#000;
 }
