@@ -12,18 +12,13 @@ import { AppHead } from 'components/lib/AppHead';
 
 
 
-export default function Create(){
+export default function Create(props){
     const router = useRouter();
     const qy = router.query
     const { param, title} = router.query
-    const [content, setContent] = useState([])
+    const [content, setContent] = useState(props.content)
     const [content2, setContent2] = useState([])
 
-   useEffect( () => {
-        get_xrh_data(`${process.env.main}/form/get-form/realestateplot/`, false).then(data => {
-          setContent(data.data);  
-      });
-   }, [] )
 
    
   return (
@@ -57,4 +52,17 @@ export default function Create(){
     // {/* </Layout1> */}
 
   )
+}
+
+
+export async function getServerSideProps({params, query, req, res }) {
+  
+  const res2 = await fetch(`${process.env.main}/form/get-form/realestateplot/`)
+  const content = await res2.json()
+
+  return {
+    props: {
+      content:content,
+    },
+  };
 }

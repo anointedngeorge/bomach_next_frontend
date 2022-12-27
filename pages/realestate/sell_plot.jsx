@@ -30,7 +30,7 @@ export default function Sell_plot() {
           <div className='row'>
             {/* {JSON.stringify(qy)} */}
             <div className='col-md-4'>
-              <Branch required name_attr='branch' on_change_fun={branch_fun}  />
+              <Branch data={props.branch} required name_attr='branch' on_change_fun={branch_fun}  />
               <div className='col-md-12'>
               {/* <label>Branch name</label> */}
               <input hidden required className='form-control form-control-sm' name='branch_name' id='branch_name' />
@@ -112,4 +112,17 @@ export default function Sell_plot() {
       </form>
     </div>
   )
+}
+
+
+export async function getServerSideProps({params, query, req, res }) {
+  
+  const res2 = await fetch(`${process.env.main}/branch/get-branch/`)
+  const branch = await res2.json()
+
+  return {
+    props: {
+      branch:branch,
+    },
+  };
 }
