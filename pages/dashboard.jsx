@@ -29,7 +29,7 @@ export default function Dashboard(props) {
               
             </li> */}
           </ol>
-          <Cards />
+          <Cards data={props.general_data} />
           <DashboardCharts />
           {/* <DataTable /> */}
         </div>
@@ -41,16 +41,21 @@ export default function Dashboard(props) {
 
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  const url_forms = `${process.env.main}/general/get-count`
+  const res2 = await fetch(url_forms)
+  const data = await res2.json()
+  
   return {
     props: {
       user: user,
       user_status:user.status,
+      general_data:data,
     },
   };
 }

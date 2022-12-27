@@ -1,15 +1,8 @@
 import { get_xrh_data } from 'functions'
 import React, { useEffect, useState } from 'react'
 
-export const Cards = () => {
-  const [content, setContent] = useState([])
-
-  useEffect( () => {
-    const url = `${process.env.main}/general/get-count`
-    get_xrh_data(url, false).then(data => {
-      setContent(data.data);
-    })
-  }, [] )
+export const Cards = ({data=[]}) => {
+  const [content, setContent] = useState(data)
 
 
   return (
