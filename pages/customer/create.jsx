@@ -33,7 +33,8 @@ export default function Create(props){
       </ol>
       
         <form action={`${process.env.customer}/customer/register-customer`} onSubmit={settings_form} method='POST'>
-        <DynamicFormData 
+        <DynamicFormData
+            branch_data={props.branch}
             dynamicForms={content} 
             country_name='country_id' 
             state_name='state' 
@@ -50,16 +51,28 @@ export default function Create(props){
 }
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  const url_branch = `${process.env.main}/branch/get-branch`
+  const res1 = await fetch(url_branch)
+  const data_branch = await res1.json()
+
+ 
+
+  const url_forms = `${process.env.main}/form/get-form/${query.param}/`
+  const res2 = await fetch(url_forms)
+  const data_forms = await res2.json()
+  
   return {
     props: {
       user: user,
       user_status:user.status,
+      branch:data_branch,
+      forms:data_forms,
     },
   };
 }

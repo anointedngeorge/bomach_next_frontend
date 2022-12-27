@@ -13,13 +13,7 @@ import { AppHead } from 'components/lib/AppHead';
 export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
-
-    useEffect( () => {
-      get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
-        setContent(data.data);  
-    });
-    }, [param] )
+    const [content, setContent] = useState(props.forms)
    
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
@@ -32,7 +26,7 @@ export default function Create(props){
       </ol>
       
         <form action={`${process.env.realestate}/estate/register-estate`} onSubmit={settings_form} method='POST'>
-        <DynamicFormData dynamicForms={content} />
+        <DynamicFormData dynamicForms={content} branch_data={props.branch} />
         </form>
     
         
@@ -45,16 +39,28 @@ export default function Create(props){
 }
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  const url_branch = `${process.env.main}/branch/get-branch`
+  const res1 = await fetch(url_branch)
+  const data_branch = await res1.json()
+
+ 
+
+  const url_forms = `${process.env.main}/form/get-form/${query.param}/`
+  const res2 = await fetch(url_forms)
+  const data_forms = await res2.json()
+  
   return {
     props: {
       user: user,
       user_status:user.status,
+      branch:data_branch,
+      forms:data_forms,
     },
   };
 }

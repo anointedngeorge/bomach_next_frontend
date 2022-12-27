@@ -16,25 +16,16 @@ import { AppHead } from 'components/lib/AppHead';
 export default function View(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
-    const [content2, setContent2] = useState([])
-    const [formfield, setFormfield] = useState([])
+    const [content2, setContent2] = useState(props.realestate)
+    const [formfield, setFormfield] = useState(props.formfield)
 
-    
-   useEffect(() => {
-        get_xrh_data(`${process.env.main}/formfield/get-formfield/${param}/`, false).then(data => {
-            setFormfield(data.data);  
-        });
 
-        get_xrh_data(`${process.env.realestate}/estate/get-estate/`, false).then(data => {
-            setContent2(data.data);  
-        });
-   }, [param])
 
    async function remove_formfield(el) {
       const id = el.target.dataset['unique_id'];
       const url = `${process.env.realestate}/estate/delete-estate/${id}/`
-      delete_xrh_data(url)
+      // delete_xrh_data(url)
+      alert(url)
   }
 
   function contentReloader(params) {
@@ -42,8 +33,6 @@ export default function View(props){
           setContent2(data.data);  
       });
   }
-
-
 
 
   return (
@@ -122,16 +111,27 @@ export default function View(props){
 
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  // fetching realestate
+
+  const res1 = await fetch(`${process.env.realestate}/estate/get-estate/`)
+  const data = await res1.json()
+
+  // fetch formfields
+  const res2 = await fetch(`${process.env.main}/formfield/get-formfield/${query.param}/`)
+  const data_formfield = await res2.json()
+
   return {
     props: {
       user: user,
       user_status:user.status,
+      realestate:data,
+      formfield:data_formfield,
     },
   };
 }

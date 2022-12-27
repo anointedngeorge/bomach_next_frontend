@@ -16,18 +16,8 @@ import { Table3, Tabledata } from 'components/lib/Tabledata';
 export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
+    const [content, setContent] = useState(props.branch)
 
-    useEffect(() => {
-      get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
-        setContent(data.data);  
-    });
-
-    get_xrh_data(`${process.env.main}/branch/get-branch/`, false).then(data => {
-        setContent(data.data);  
-    });
-
-    }, [])
 
    async function remove_formfield(el) {
     const id = el.target.dataset['unique_id'];
@@ -105,16 +95,27 @@ export default function Create(props){
 }
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  // fetching realestate
+  const url3 = `${process.env.main}/branch/get-branch/`
+  const res1 = await fetch(url3)
+  const data = await res1.json()
+
+  // fetch formfields
+  const res2 = await fetch(`${process.env.main}/formfield/get-formfield/${query.param}/`)
+  const data_formfield = await res2.json()
+
   return {
     props: {
       user: user,
       user_status:user.status,
+      branch:data,
+      formfield:data_formfield,
     },
   };
 }

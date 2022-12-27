@@ -14,7 +14,8 @@ export const DynamicFormData = ({
     country_name='country',
     state_name = 'state',
     country_title='choose country',
-    state_title='choose state'
+    state_title='choose state',
+    branch_data=[]
 }) => {
     // checks for the forms length
     const [check_form_len, setCheckformLen] = useState([0])
@@ -27,7 +28,7 @@ export const DynamicFormData = ({
                 ....
             </div> */}
             {show_branch? 
-                <Branch div_class_name='col-lg-12' label_title='Branch' />
+                <Branch  data={branch_data} div_class_name='col-lg-12' label_title='Branch' />
             : ''
             }
         </div>

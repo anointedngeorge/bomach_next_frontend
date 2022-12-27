@@ -3,12 +3,9 @@ import { get_xrh_data } from 'functions'
 import React, {useState, useEffect} from 'react'
 
 
-export const Branch = ({on_change_fun='', div_class_name='col-lg-12', required=true, name_attr='branch_id', label_title='Choose Branch'}) => {
-    const [branch, setBranch] = useState([])
-    const url = `${process.env.main}/branch/get-branch`
-    useEffect(() => {
-        get_xrh_data(url, false).then(data =>  setBranch(data.data) )
-    }, [url])
+export const Branch = ({data=[], on_change_fun='', div_class_name='col-lg-12', required=true, name_attr='branch_id', label_title='Choose Branch'}) => {
+    const [branch, setBranch] = useState(data)
+
 
     async function default_fun(params) {
         

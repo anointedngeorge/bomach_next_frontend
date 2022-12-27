@@ -30,8 +30,8 @@ export  const NAVIGATION = [
         href:'/settings/formfieldsettings?param=formfield&title=Edit Form Field', icon:''},
         {name:'Create Forms', 
         href:'/settings/forms?param=forms&title=Create Form', icon:''},
-        {name:'Company Branch', 
-        href:'/settings/branch?param=branch&title=Companies Branch', icon:''},
+        {name:'Add Branch', 
+        href:'/settings/branch?param=branch&title=New Branch', icon:''},
         
     ]}
 ]

@@ -18,23 +18,7 @@ import { Table2, Tabledata } from 'components/lib/Tabledata';
 export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
-
-
-    const [formfield2, setFormField2] = useState([])
-
-    useEffect(() => {
-        // const response = `${el.target.value}`.split(' ').join;
-        get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
-        false).then(data => {
-            setFormField2(data.data);  
-        });
-        get_xrh_data(`${process.env.main}/form/get-form/${param}/`, false).then(data => {
-          setContent(data.data);  
-      });
-
-    }, [param])
-
+    const [formfield2, setFormField2] = useState(props.formfield)
 
     function contentReloader(params) {
       get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
@@ -104,16 +88,21 @@ export default function Create(props){
 }
 
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({params, query, req, res }) {
   const user_token = req.cookies.user_token;
   const user_status = req.cookies.user_status;
   const url = `${process.env.auth}/login/get_user`
   const user = await authentication_token(url, user_token);
 
+  // fetch formfields
+  const res2 = await fetch(`${process.env.main}/formfield/get-formfield/`)
+  const data_formfield = await res2.json()
+
   return {
     props: {
       user: user,
       user_status:user.status,
+      formfield:data_formfield,
     },
   };
 }
