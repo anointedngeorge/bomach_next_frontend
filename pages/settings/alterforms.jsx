@@ -15,21 +15,9 @@ import { Navbar } from 'components/lib/Navbar';
 export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
+    const [content, setContent] = useState(props.forms)
     let counter = 1;
 
-   useEffect( () => {
-    get_xrh_data(`${process.env.main}/form/get-form/`, 
-        false).then(data => {
-            setContent(data.data);
-        });
-    // setInterval(() => {
-    //     get_xrh_data(`${process.env.main}/form/get-form/`, 
-    //     false).then(data => {
-    //         setContent(data.data);
-    //     });
-    // }, 4000);
-   }, [param] )
 
 
 
@@ -108,11 +96,16 @@ export async function getServerSideProps({ req, res }) {
     const user_status = req.cookies.user_status;
     const url = `${process.env.auth}/login/get_user`
     const user = await authentication_token(url, user_token);
-  
+    
+    const url2 = `${process.env.main}/form/get-form/`;
+    const res1 = await fetch(url2)
+    const data = await res1.json()
+
     return {
       props: {
         user: user,
         user_status:user.status,
+        forms:data,
       },
     };
   }
