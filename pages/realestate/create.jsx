@@ -17,7 +17,7 @@ export default function Create(props){
    
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
-      <AppHead title={`Bomach Group | `} />
+      <AppHead title={`Bomach Group | ${title} `} />
     <main>
     <div className="container-fluid px-4">
       <h1 className="mt-4">{title}</h1>
