@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import React from 'react'
+
 
 export const Topnav = () => {
   return (
@@ -22,7 +24,8 @@ export const Topnav = () => {
           <li><a className="dropdown-item" href="#!">Settings</a></li>
           <li><a className="dropdown-item" href="#!">Activity Log</a></li>
           <li><hr className="dropdown-divider" /></li>
-          <li><a className="dropdown-item" href="#!">Logout</a></li>
+          <li><Link className="dropdown-item" href="/logout">Logout</Link></li>
+          
         </ul>
       </li>
     </ul>

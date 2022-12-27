@@ -14,21 +14,8 @@ import { Navbar } from 'components/lib/Navbar';
 export default function Create(props){
     const router = useRouter();
     const { param, title} = router.query
-    const [content, setContent] = useState([])
+    const [content, setContent] = useState(props.formfield)
     let counter = 1;
-
-   useEffect( () => {
-    get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
-        false).then(data => {
-            setContent(data.data);
-        });
-    setInterval(() => {
-        get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
-        false).then(data => {
-            setContent(data.data);
-        });
-    }, 4000);
-   }, [param] )
 
    async function update_formfield(el) {
         const id = el.target.dataset['unique_id'];
@@ -120,10 +107,15 @@ export async function getServerSideProps({ req, res }) {
     const url = `${process.env.auth}/login/get_user`
     const user = await authentication_token(url, user_token);
   
+    const url2 = `${process.env.main}/formfield/get-formfield/`;
+    const res1 = await fetch(url2)
+    const data = await res1.json()
+
     return {
       props: {
         user: user,
         user_status:user.status,
+        formfield:data,
       },
     };
   }
