@@ -1,13 +1,15 @@
 import { SessionNotification } from 'components/layout/Sessionnotification'
+import { AppHead } from 'components/lib/AppHead'
 import React from 'react'
 var Cookies = require('cookies')
 
 export default function logout() {
   
   return (
-    <SessionNotification>
-
-    </SessionNotification>
+    <>
+      <AppHead title='Logout Page' />
+      <SessionNotification />
+    </>
   )
 }
 

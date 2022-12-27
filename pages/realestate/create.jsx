@@ -31,7 +31,8 @@ export default function Create(props){
     
         
     </div>
-    <AppScript path='../../' />
+    <AppScript path='../' />
+    
     </main>
     </Layout1>
 

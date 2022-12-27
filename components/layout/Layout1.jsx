@@ -1,4 +1,5 @@
 
+import { Navbar } from 'components/lib/Navbar'
 import { redirect } from 'next/dist/server/api-utils'
 import Script from 'next/script'
 import Login from 'pages/login'
@@ -22,6 +23,7 @@ export function Layout1({children, content=[], user=[], user_status=false}){
       <div id="layoutSidenav">
         <Sidebar user={user} />
         <div id="layoutSidenav_content">
+        {/* <Navbar /> */}
         {children} 
         <Footer />
         </div>

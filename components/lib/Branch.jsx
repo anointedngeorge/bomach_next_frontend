@@ -14,9 +14,9 @@ export const Branch = ({data=[], on_change_fun='', div_class_name='col-lg-12', r
   return (
     
         <div className={div_class_name}>
-            <lable>
+            <label>
                 <b>{label_title}</b>
-            </lable>
+            </label>
             <select onChange={on_change_fun || default_fun} name={name_attr} className='form-control form-control-sm' required={required}>
                 <option defaultValue={true} disabled>Choose</option>
                 {branch.map(data => {
