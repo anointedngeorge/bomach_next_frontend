@@ -20,7 +20,7 @@ export const Services = ({
         </label>
         <select onChange={on_change_fun || default_fun} name={name} 
         className='form-control form-control-sm'>
-        <option defaultValue={true} disabled>Choose</option>
+        <option defaultValue={true}>Choose</option>
             {SERVICES.map((data, i) => {
                 return (
                     <option key={`id_ssa33434_${i}`} value={`${data.id}`}>
