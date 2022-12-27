@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import { Branch } from 'components/lib/Branch';
 import { Customer } from 'components/lib/Customer';
-import { settings_form, _settingFormWithConfirmationPrompt } from 'functions';
+import { get_xrh_data, settings_form, _settingFormWithConfirmationPrompt } from 'functions';
 
 
 export default function Sell_plot() {
-
+    const [content, setContent] = useState([])
     const router = useRouter();
     const qy = router.query
+
+    useEffect(() => {
+      const url = `${process.env.main}/branch/get-branch/`;
+      get_xrh_data(url, false).then(data => {
+        setContent(data.data);
+      })
+    }, [])
     
     async function branch_fun(el) {
       const indx = el.target.selectedIndex;
@@ -30,7 +37,7 @@ export default function Sell_plot() {
           <div className='row'>
             {/* {JSON.stringify(qy)} */}
             <div className='col-md-4'>
-              <Branch data={props.branch} required name_attr='branch' on_change_fun={branch_fun}  />
+              <Branch data={content} required name_attr='branch' on_change_fun={branch_fun}  />
               <div className='col-md-12'>
               {/* <label>Branch name</label> */}
               <input hidden required className='form-control form-control-sm' name='branch_name' id='branch_name' />
@@ -114,15 +121,3 @@ export default function Sell_plot() {
   )
 }
 
-
-export async function getServerSideProps({params, query, req, res }) {
-  
-  const res2 = await fetch(`${process.env.main}/branch/get-branch/`)
-  const branch = await res2.json()
-
-  return {
-    props: {
-      branch:branch,
-    },
-  };
-}
