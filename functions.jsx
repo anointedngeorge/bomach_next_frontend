@@ -3,17 +3,19 @@ import { baseUrl } from "navigation";
 // import { headers } from "next.config";
 var JSAlert = require("js-alert");
 
-
+let counter =  1;
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
+ 
   if (document) {
       if (config.method !== 'get') {
         const elem =  document.querySelector('#loader');
         const checkelem = document.body.contains(elem);
-        const message = "In Progress...";
+        const message = `In Progress... ${counter}`;
         checkelem? elem.innerHTML = message : '';
       }
   }
+  counter++;
   return config;
 }, function (error) {
   return Promise.reject(error);
