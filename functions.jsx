@@ -18,7 +18,12 @@ axios.interceptors.request.use(function (config) {
   counter++;
   return config;
 }, function (error) {
-  return Promise.reject(error);
+  if (response.config.method !== 'get') {
+    const elem =  document.querySelector('#loader');
+    const checkelem = document.body.contains(elem);
+    const message = JSON.stringify(error);
+    checkelem? elem.innerHTML = message : '';
+  }
 });
 
 // Add a response interceptor
@@ -33,7 +38,13 @@ axios.interceptors.response.use(function (response) {
 }
 return response;
 }, function (error) {
-  return Promise.reject(error);
+
+  if (response.config.method !== 'get') {
+      const elem =  document.querySelector('#loader');
+      const checkelem = document.body.contains(elem);
+      const message = JSON.stringify(error);
+      checkelem? elem.innerHTML = message : '';
+    }
 });
 
 
