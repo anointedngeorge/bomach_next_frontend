@@ -75,6 +75,8 @@ export const DynamicFormData = ({
             <button  type='submit' className='btn btn-sm btn-warning'>{submit_btn_title}</button>
         </div>
         </div>
+        <div id='loader' style={{marginTop:'20px'}}></div>
+      
     </div>
   )
 }

@@ -9,6 +9,7 @@ export default function Document() {
     <Html>
       <Head />
       <body >
+        <div id='loader1'></div>
         <Main />
         <NextScript />
         <Script strategy="beforeInteractive" type="text/javascript" src={"./bomach/js/scripts.js"} />

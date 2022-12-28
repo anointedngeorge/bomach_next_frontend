@@ -70,6 +70,9 @@ export default function Create(props){
             </div>
         </form>
     
+            <div id='loader' style={{marginTop:'20px'}}></div>
+            
+
         
     </div>
     <AppScript path='../../' />

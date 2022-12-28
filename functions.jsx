@@ -4,6 +4,40 @@ import { baseUrl } from "navigation";
 var JSAlert = require("js-alert");
 
 
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+  if (document) {
+      if (config.method !== 'get') {
+        const elem =  document.querySelector('#loader');
+        const checkelem = document.body.contains(elem);
+        const message = "In Progress...";
+        checkelem? elem.innerHTML = message : '';
+      }
+  }
+  return config;
+}, function (error) {
+  return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+  if (document) {
+    if (response.config.method !== 'get') {
+      const elem =  document.querySelector('#loader');
+      const checkelem = document.body.contains(elem);
+      const message = response.data.message;
+      checkelem? elem.innerHTML = message : '';
+    }
+}
+return response;
+}, function (error) {
+  return Promise.reject(error);
+});
+
+
+
+
+
 export const service_iframe_func = async function(el) {
         const data = el.target.value
         let url_pattern = ''
@@ -249,6 +283,7 @@ export async function settings_form(el) {
 
   const url2 = el.target.action;
   // console.log(url2)
+
   await axios({
       url:url2,
       method: 'POST',
