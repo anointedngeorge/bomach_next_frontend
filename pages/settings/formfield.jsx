@@ -20,14 +20,6 @@ export default function Create(props){
     const { param, title} = router.query
     const [formfield2, setFormField2] = useState(props.formfield)
 
-    function contentReloader(params) {
-      get_xrh_data(`${process.env.main}/formfield/get-formfield/`, 
-        false).then(data => {
-            setFormField2(data.data);  
-        });
-    }
-
-
     async function remove_formfield(el) {
       const id = el.target.dataset['unique_id'];
       const url = `${process.env.main}/formfield/delete-formfield/${id}/`
@@ -45,7 +37,7 @@ export default function Create(props){
       </ol>
       
         <form
-        action={`${process.env.main}/formfield/register-formfield`} 
+        action={`${process.env.main}/formfield/register-formfield/`} 
         onSubmit={settings_form} 
         method='POST'>
 
@@ -81,7 +73,7 @@ export default function Create(props){
           <Tabledata
             tbody={formfield2} 
             thead={['form_service','field']}
-            reload_fun_content={contentReloader}
+            // reload_fun_content={contentReloader}
             remove_xrh_data={remove_formfield}
             />
         </div>

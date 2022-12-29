@@ -6,7 +6,7 @@ var JSAlert = require("js-alert");
 let counter =  1;
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
- 
+
   if (document) {
       if (config.method !== 'get') {
         const elem =  document.querySelector('#loader');
@@ -159,6 +159,7 @@ export async function get_xrh_data(xrh_url = '', is_single_url=true) {
         method:'GET',
         headers: Headers,
     })
+
     return obj;
 }
 

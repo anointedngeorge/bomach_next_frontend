@@ -8,6 +8,7 @@ import { Services } from 'components/lib/Services';
 import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
 import { Navbar } from 'components/lib/Navbar';
+import { Tabledata } from 'components/lib/Tabledata';
 
 
 
@@ -17,9 +18,6 @@ export default function Create(props){
     const { param, title} = router.query
     const [content, setContent] = useState(props.forms)
     let counter = 1;
-
-
-
 
    async function remove_formfield(el) {
          const id = el.target.dataset['unique_id'];
@@ -39,48 +37,16 @@ export default function Create(props){
 
         <div className='row'>
             <Navbar navbar={[{
-                   title:'Alter Form field',
+                   title:'Back >> Formfield',
                    href:'/settings/formfieldsetting?param=formfield&title=Create Form Field'
                 }]} />
         </div>
 
-        <table className='table-sm '>
-            <thead>
-               <tr>
-                    <th>#</th>
-                    <th>Service</th>
-                    <th>form type</th>
-                    <th>form element</th>
-                    <th>form title</th>
-                    <th>...</th>
-               </tr>
-            </thead>
-            <tbody>
-                {content.map( (data, i) => {
-                    return (
-                        <tr key={`id_formfield_${i}`} id={`id_formfield_${i}`} className={`class_formfield`}>
-                            <td>{counter + i}</td>
-                            <td>{data.form_service}</td>
-                            <td>{data.form_type}</td>
-                            <td>{data.form_element}</td>
-                            <td>{data.title}</td>
-                            <td>{data.field}</td>
-                    
-                            <td>
-                                <button
-                                data-unique_id={data.id}
-                                onClick={remove_formfield}
-                                className='btn btn-sm'>
-                                    Remove
-                                </button>
-                            </td>
-                            
-                        </tr>
-                    )
-                } )}
-                
-            </tbody>
-        </table>
+        <Tabledata 
+          thead={['name','form_type', 'form_element']} 
+          tbody={content} 
+          reload_fun_content={remove_formfield}
+          />
             
         </div>
         <AppScript path='../../' />

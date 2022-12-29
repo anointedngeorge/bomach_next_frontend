@@ -50,3 +50,12 @@ export const FORMTYPE = [
     'text', 'datetime', 'email','number',
     'date', 'color', 'tel','password'
 ]
+
+
+export const ELEMENTFUNCTION = [
+    'onChange', 'onClick','onLoad',
+]
+
+export const CALCULATORFUNCTION = [
+    'none','summation'
+]

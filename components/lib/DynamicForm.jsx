@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { Branch } from './Branch';
 import { CountryStates } from './CountryStates';
 // import { FormCodes } from './FormCodes';
@@ -20,9 +20,31 @@ export const DynamicFormData = ({
     // checks for the forms length
     const [check_form_len, setCheckformLen] = useState([0])
     let counter = 40;
+    const inputRef = useRef(null);
     
+    async function defaultFun(params) {
+        // console.log(params);
+    }
+
+    async function summation(params) {
+        const elem = params.target.value;
+        const targetelemid =  params.target.dataset.targetelemid;
+        const targetelemtoupdateid = params.target.dataset.targetelemtoupdateid;
+        if (document) {
+                const targetid = document.querySelector(`#${targetelemid}`).value;
+                let summatn = targetid != '' ? parseInt(elem) * parseInt(targetid) : 0;
+                const element = document.querySelector(`#${targetelemtoupdateid}`);
+                document.body.contains(element)? element.value = summatn : JSAlert.alert("Invalid element to update.")
+                console.log(targetelemid);
+        }
+    }
+
+
+
+    const CalculatorFunction = {summation}
   return (
     <div className='container'>
+        
         <div className='row'>
             {/* <div className='col-lg-6'>
                 ....
@@ -51,6 +73,10 @@ export const DynamicFormData = ({
                         className={`form-control form-control-sm `}
                         placeholder={data.title}
                         required={data.is_required}
+                        disabled={data.is_disabled}
+                        data-targetelemid={data.function}
+                        data-targetelemtoupdateid={data.function_target_value}
+                        onKeyUp={CalculatorFunction[data.function_name] || defaultFun}
                         />
                       
                     </div>

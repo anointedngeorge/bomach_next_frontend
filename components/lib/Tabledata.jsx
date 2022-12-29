@@ -13,7 +13,8 @@ export const Tabledata = ({
     show_button=true,
     remove_xrh_data="",
     reload_fun_content="",
-    fontsize='12px'
+    fontsize='12px',
+    overflow=200
 }) => {
     const counter = 1;
     const [query, setQuery] = useState([])
@@ -35,7 +36,7 @@ async function remove_default(el) {
         <div className='mb-3'>
             <button id='contentreload'  onClick={reload_fun_content || remove_default}>Reload</button>
         </div>
-        <div className='row table-responsive'>
+        <div className='row table-responsive' style={{maxHeight:`${overflow}px`,overflow:'scroll'}}>
         <table className='table table-sm' style={{fontSize:fontsize, maxHeight:'300px', overflow:'scroll'}}>
             <thead>
                 <tr>
