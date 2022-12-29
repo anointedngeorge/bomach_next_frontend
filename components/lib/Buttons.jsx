@@ -27,7 +27,7 @@ export const Button = ({query, pages=[], current_param=''}) => {
                         data-toggle="modal"
                         data-target=".bd-example-modal-lg"
                         className={`${data.classname} ${data.modalclassid}`}
-                        href={`/${data.pagename}/${get_query}`}
+                        href={`/${data.pagename}${get_query}`}
                         data-container={`${data.modalclassid}`}
                         onClick={_iframe_func}
                         >
@@ -43,7 +43,7 @@ export const Button = ({query, pages=[], current_param=''}) => {
                     <div className='div-button-container' key={`id_asdas343403434_${i}`}>
                         <a 
                         className={`${data.classname} ${data.modalclassid}`}
-                        href={`/${data.pagename}/${get_query}`}
+                        href={`/${data.pagename}${get_query}`}
                         data-container={`${data.modalclassid}`}
                         onClick={_iframe_func}
                         >

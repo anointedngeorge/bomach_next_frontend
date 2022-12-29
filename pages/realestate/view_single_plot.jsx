@@ -61,6 +61,8 @@ const View_single = () => {
           }
         }
       />
+
+      <div id='loader'></div>
     </div>
     
   )

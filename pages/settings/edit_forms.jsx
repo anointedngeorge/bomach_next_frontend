@@ -1,19 +1,15 @@
-import { AppScript } from 'components/lib/AppScript'
-import Script from 'next/script'
-import React, {useEffect, useState, useRef} from 'react'
-import { useRouter } from 'next/router';
-import { authentication_token, get_xrh_data, settings_form,delete_xrh_data } from 'functions';
-import { DynamicFormData } from 'components/lib/DynamicForm';
 import { Services } from 'components/lib/Services';
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import { FORMTYPE,ELEMENTFUNCTION, CALCULATORFUNCTION } from 'navigation';
-import { Layout1 } from 'components/layout/Layout1';
-import { AppHead } from 'components/lib/AppHead';
-import { Table2, Tabledata } from 'components/lib/Tabledata';
-var JSAlert = require("js-alert");
+import { authentication_token, get_xrh_data, settings_form,delete_xrh_data, update_xhr_data } from 'functions';
 
-export default function Create(props){
+
+
+export default function Edit_forms(props) {
     const router = useRouter();
-    const { param, title} = router.query
+    const qy = router.query;
+
     const [TargetValue, setTargetValue] = useState('')
     const [elemtitle, setTitle] = useState('')
     const [formfield, setFormField] = useState([])
@@ -57,20 +53,16 @@ async function checkTargetSelect(params) {
     setTargetValue(target_id);
 }
 
-
   return (
-    <Layout1 user={props.user} user_status={props.user_status} >
-      <AppHead title={`Bomach Group | ${title}`} />
-    <main>
-    <div className="container-fluid px-4" id='modal_container'>
-      <h1 className="mt-4">{title}</h1>
+    <div className="container-fluid px-4 mb-4" id='modal_container'>
+      <h1 className="mt-4">{'Edit Form with ID'}</h1>
       <ol className="breadcrumb mb-4">
-        <li className="breadcrumb-item active">{title}</li>
+        <li className="breadcrumb-item active text text-primary">({qy.form_service}) - ({qy.title}) - {qy.id}</li>
       </ol>
       
         <form
-        action={`${process.env.main}/form/register-form/`} 
-        onSubmit={settings_form} 
+        action={`${process.env.main}/form/update-form/${qy.id}`} 
+        onSubmit={update_xhr_data} 
         method='POST'>
 
             <div className='row'>
@@ -269,33 +261,13 @@ async function checkTargetSelect(params) {
         <div id='loader' style={{marginTop:'20px'}}></div>
 
         <div className='mt-4'>
-        <Tabledata
-        overflow={500}
-        reload_fun_content={contentReloader} 
-        tbody={formfield2} 
-        thead={['title','form_service','form_type','form_element','function','function_name','function_target_value']} 
-        remove_xrh_data={remove_formfield}
-        fontsize="15px"
-        pages={[
-            {pagename:`settings/edit_forms`, 
-            title:'Edit', 
-            modalclassid:'modal_container', 
-            classname:'btn btn-sm btn-primary', 
-            show_modal:true, 
-            icon:'BsFillPencilFill',
-            iconsize:'12px'
-            },
-        ]}
-        />
+        
         
         </div>
     </div>
-    <AppScript path='../../' />
-  </main>
-  </Layout1>
-
   )
 }
+
 
 
 export async function getServerSideProps({params, query, req, res }) {
@@ -316,4 +288,3 @@ export async function getServerSideProps({params, query, req, res }) {
       },
     };
   }
-  
