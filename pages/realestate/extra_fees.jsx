@@ -1,7 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router';
+import { settings_form, update_xhr_data, _settingFormWithConfirmationPrompt } from 'functions';
 
-export default function Extrafees (){
+
+export default function Extrafees(){
     const router = useRouter();
     const qy = router.query
 
@@ -9,23 +11,30 @@ export default function Extrafees (){
   return (
     <div className='col-md-12 mt-4'>
         <h3>
-        {qy.id}
+        Estate ID: {qy.id}
         </h3>
 
-        <form>
+        <form
+        action={`${process.env.realestate}/estate/register-fee/${qy.id}`}
+        onSubmit={update_xhr_data}
+        method="POST"
+        >
             <div className='form-group'>
                 <label>Legal fee</label>
-                <input className='form-control form-control-sm' placeholder='Legal fee' type={'number'} name='legal_fee' />
+                <input className='form-control form-control-sm' 
+                placeholder='Legal fee' type={'number'} name='legal_fee' />
             </div>
 
             <div className='form-group'>
                 <label>Survey Plan</label>
-                <input className='form-control form-control-sm' placeholder='Survey Plan' type={'number'} name='survey_plan' />
+                <input className='form-control form-control-sm' placeholder='Survey Plan' 
+                type={'number'} name='survey_plan' />
             </div>
 
             <div className='form-group'>
                 <label>Development fee</label>
-                <input className='form-control form-control-sm' placeholder='Development fee' type={'number'} name='development_fee' />
+                <input className='form-control form-control-sm' placeholder='Development fee' 
+                type={'number'} name='development_fee' />
             </div>
 
             <div className='form-group'>
