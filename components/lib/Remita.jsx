@@ -97,6 +97,15 @@ export const Remita = ({
             </tfoot>
 
         </table>
+        <div className='col-md-12'>
+            <p className='text '>
+                <b>Account Details</b><br />
+                Account Name:<b>Bomach Shelters & Property ltd</b> <br />
+                Account Number:<b>1024196681</b> <br />
+                Bank Name:<b>United Bank of Africa (UBA)</b> <br />
+            </p>
+            
+        </div>
         </div>
         <div className='mt-3'>
             <button id='remita_print_btn' onClick={print_area} className='remita_print_btn btn btn-sm btn-white border shadow'>
