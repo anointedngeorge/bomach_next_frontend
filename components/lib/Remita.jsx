@@ -1,6 +1,7 @@
-import { system_date } from 'functions';
+import { system_date, update_xhr_data, update_xhr_data_with_prompt, _settingFormWithConfirmationPrompt } from 'functions';
 import React, { useState } from 'react'
 import { BsCardChecklist, BsPrinter } from 'react-icons/bs'
+
 
 
 export const Remita = ({
@@ -108,15 +109,29 @@ export const Remita = ({
         </div>
         </div>
         <div className='mt-3'>
-            <button id='remita_print_btn' onClick={print_area} className='remita_print_btn btn btn-sm btn-white border shadow'>
-                <BsPrinter className='mr-1' />
-                Print Remita
-            </button>
-
-            <button  onClick={confirm_remita_payment} data-uuid={querys.id} className='remita_print_btn btn btn-sm btn-warning border shadow'>
-                <BsCardChecklist className='mr-1' />
-                Confirm Remita Payment
-            </button>
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <button id='remita_print_btn' onClick={print_area} className='remita_print_btn btn btn-sm btn-white border shadow'>
+                        <BsPrinter className='mr-1' />
+                        Print Remita
+                    </button>
+                </td>
+                <td>
+                <form
+                action={`${process.env.realestate}/estate/plot/update-estate-plot/${querys.id}`}
+                onSubmit={update_xhr_data_with_prompt} >
+                    <input hidden name='status' value='confirmed' />
+                    <button  type='submit' data-uuid={querys.id} className='remita_print_btn btn btn-sm btn-warning border shadow'>
+                        <BsCardChecklist className='mr-1' />
+                        Confirm Remita Payment
+                    </button>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         </div>
     </div>
   )

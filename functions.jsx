@@ -333,6 +333,33 @@ export async function update_xhr_data(el) {
 }
 
 
+export async function update_xhr_data_with_prompt(el) {
+  el.preventDefault()
+  if (window) {
+      if (window.confirm("Are you sure?")) {
+        const elements = await el.target.elements;
+        const data = await object_json(elements)
+        const url2 = el.target.action;
+        await axios({
+            url:url2,
+            method: 'PUT',
+            headers: {
+              'Content-Type':'application/json'
+            },
+            data: data
+          }).then(data => {
+              JSAlert.alert(JSON.stringify(data.data.message))
+          }).catch(error => {
+              JSAlert.alert(JSON.stringify(error.message))
+          })
+      }else {
+          JSAlert.alert("Cancelled!")
+      }
+  }
+}
+
+
+
 export async function update_xhr_data_with_data(url, data={}) {
   await axios({
       url:url,

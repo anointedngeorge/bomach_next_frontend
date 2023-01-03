@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import { Branch } from 'components/lib/Branch';
 import { Customer } from 'components/lib/Customer';
-import { authentication_token, get_xrh_data, settings_form, update_xhr_data, _settingFormWithConfirmationPrompt } from 'functions';
+import { authentication_token, get_xrh_data, settings_form, update_xhr_data, update_xhr_data_with_prompt, _settingFormWithConfirmationPrompt } from 'functions';
 import { Status2, Status3 } from 'components/lib/Status';
+
 
 
 export default function Sell_plot(props) {
@@ -27,7 +28,7 @@ export default function Sell_plot(props) {
     <div className='container'>
       
       <form 
-      onSubmit={update_xhr_data} 
+      onSubmit={update_xhr_data_with_prompt} 
       action={`${process.env.realestate}/estate/plot/update-estate-plot/${qy.id}`} >
       <div className='mt-4'>
           <h3>Sell this plot ({qy.name} - {qy.id})</h3>

@@ -45,6 +45,10 @@ const View_single = (props) => {
               // {name:'Confirm', href:'/confirm_payment', classname:'btn btn-sm btn-warning', tooltip:'Confirm Payment'},
             ],
             "reserved":[],
+            "confirmed":[
+              {name:'Remita', href:'/remita', classname:'btn btn-sm btn-warning',tooltip:'Sell this plot'},
+              // {name:'Confirm', href:'/confirm_payment', classname:'btn btn-sm btn-warning', tooltip:'Confirm Payment'},
+            ],
             "unavailable":[
               {name:'unlock', href:'/confirm_payment', classname:'btn btn-sm btn-warning', tooltip:'Confirm Payment'},
             ],
