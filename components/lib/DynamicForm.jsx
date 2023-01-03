@@ -28,20 +28,28 @@ export const DynamicFormData = ({
 
     async function summation(params) {
         const elem = params.target.value;
-        const targetelemid =  params.target.dataset.targetelemid;
-        const targetelemtoupdateid = params.target.dataset.targetelemtoupdateid;
         if (document) {
-                const targetid = document.querySelector(`#${targetelemid}`).value;
-                let summatn = targetid != '' ? parseInt(elem) * parseInt(targetid) : 0;
-                const element = document.querySelector(`#${targetelemtoupdateid}`);
-                document.body.contains(element)? element.value = summatn : JSAlert.alert("Invalid element to update.")
-                console.log(targetelemid);
+            let unit_price = document.getElementById("id_unit_price").value;
+            let amount =  parseFloat(unit_price) * parseFloat(elem);
+            document.getElementById("id_price").value = amount;
         }
     }
 
-
+    // async function summation(params) {
+    //     const elem = params.target.value;
+    //     const targetelemid =  params.target.dataset.targetelemid;
+    //     const targetelemtoupdateid = params.target.dataset.targetelemtoupdateid;
+    //     if (document) {
+    //             const targetid = document.querySelector(`#${targetelemid}`).value;
+    //             let summatn = targetid != '' ? parseInt(elem) * parseInt(targetid) : 0;
+    //             const element = document.querySelector(`#${targetelemtoupdateid}`);
+    //             document.body.contains(element)? element.value = summatn : JSAlert.alert("Invalid element to update.")
+    //             console.log(targetelemid);
+    //     }
+    // }
 
     const CalculatorFunction = {summation}
+
   return (
     <div className='container'>
         

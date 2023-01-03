@@ -17,7 +17,14 @@ export default function Create(props){
     const qy = router.query
     const { param, title} = router.query
     const [content, setContent] = useState(props.content)
+    const [content2, setContent2] = useState(props.content)
 
+    useEffect(() => {
+        const url = `${process.env.realestate}/estate/get-estate/${qy.id}`;
+        get_xrh_data(url, false).then(data => {
+          setContent2(data.data[0])
+        })
+    }, [])
 
   return (
     // <Layout1 >
@@ -30,8 +37,11 @@ export default function Create(props){
         </ol>
         
           <form action={`${process.env.realestate}/estate/plot/register-estate-plot/`} 
-          onSubmit={settings_form} method='POST'>
+          onSubmit={settings_form} method='POST' >
+          <label>Estate Unit Price</label>
+          <input id='id_unit_price' readOnly className='form-control form-control-sm' defaultValue={content2.unit_price} />
           <div className='row'>
+          {/* {JSON.stringify(content2)} */}
             <label>
               Estate Identification
             <input type={'text'} defaultValue={qy.id} readOnly name='estate_id' className='form-control form-control-sm' />
@@ -57,6 +67,7 @@ export async function getServerSideProps({params, query, req, res }) {
   const res2 = await fetch(`${process.env.main}/form/get-form/realestateplot/`)
   const content = await res2.json()
 
+  // console.log(content);
   return {
     props: {
       content:content,

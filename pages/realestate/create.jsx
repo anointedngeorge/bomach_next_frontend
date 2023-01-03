@@ -25,7 +25,10 @@ export default function Create(props){
         <li className="breadcrumb-item active">{title}</li>
       </ol>
       
-        <form action={`${process.env.realestate}/estate/register-estate/`} onSubmit={settings_form} method='POST'>
+        <form 
+        action={`${process.env.realestate}/estate/register-estate/`} 
+        onSubmit={settings_form} 
+        method='POST'>
         <DynamicFormData dynamicForms={content} branch_data={props.branch} />
         </form>
     

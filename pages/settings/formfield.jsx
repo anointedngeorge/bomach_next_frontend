@@ -22,9 +22,15 @@ export default function Create(props){
 
     async function remove_formfield(el) {
       const id = el.target.dataset['unique_id'];
-      const url = `${process.env.main}/formfield/delete-formfield/${id}/`
+      const url = `${process.env.main}/formfield/delete-formfield/${id}`
       delete_xrh_data(url)
     }
+
+  async function reloader(params) {
+    const res2 = await fetch(`${process.env.main}/formfield/get-formfield/`)
+    const data_formfield = await res2.json()
+    setFormField2(data_formfield)
+  }
    
   return (
     <Layout1 user={props.user} user_status={props.user_status} >
@@ -73,8 +79,9 @@ export default function Create(props){
           <Tabledata
             tbody={formfield2} 
             thead={['form_service','field']}
-            // reload_fun_content={contentReloader}
+            reload_fun_content={reloader}
             remove_xrh_data={remove_formfield}
+            overflow={700}
             />
         </div>
   </Layout1>

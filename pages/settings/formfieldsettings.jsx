@@ -20,7 +20,7 @@ export default function Create(props){
    async function update_formfield(el) {
         const id = el.target.dataset['unique_id'];
         const is_shown = el.target.checked;
-        const url = `${process.env.main}/formfield/update-formfield/${id}/`
+        const url = `${process.env.main}/formfield/update-formfield/${id}`
         update_xhr_data_with_data(url, {'is_shown':is_shown}).then(data => {})
         
    }
