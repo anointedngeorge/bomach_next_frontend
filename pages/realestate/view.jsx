@@ -24,8 +24,8 @@ export default function View(props){
    async function remove_formfield(el) {
       const id = el.target.dataset['unique_id'];
       const url = `${process.env.realestate}/estate/delete-estate/${id}/`
-      // delete_xrh_data(url)
-      alert(url)
+      delete_xrh_data(url)
+      // alert(url)
   }
 
   function contentReloader(params) {
