@@ -39,3 +39,23 @@ button#contentreload {
   font-weight: 400;
   color:#000;
 }
+
+
+
+@media print {
+
+  div#remita_printer_area {
+    width: 100% auto;
+    min-height: 50px;
+  }
+  
+  div#remita_printer_area  div.col-md-6 {
+    width: 50%;
+    display: inline-flex;
+  }
+
+
+  button.remita_print_btn {
+      display: none;
+  }
+}

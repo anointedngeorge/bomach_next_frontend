@@ -118,7 +118,7 @@ export const Button2 = ({querydata}) => {
                         data-obj={JSON.stringify(querydata)}
                         key={`id_dsa34r34423454_${i}`}
                         className={`${data.classname} buttonx`}
-                        href={`${data.href}/${query}`}> 
+                        href={`${data.href}${query}`}> 
                         {/* <span className='mr-1'> */}
                         <IconData icon={data.icon} fontSize={data.iconsize} />
                         {/* </span>

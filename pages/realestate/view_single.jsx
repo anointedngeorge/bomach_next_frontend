@@ -17,17 +17,15 @@ const View_single = () => {
 
   return (
     <div className='col-md-12 mt-4'>
-    <h3>View</h3>
-        <div className="row mt-4">
+        <div className="row p-3">
         {key.map((data, i) => {
-
           return(
-            <div key={`id_adsfasd_${i}`} className="col-sm-4">
-            <span className='ml-4'>
-              {`${data}`.toUpperCase()}
+            <div key={`id_adsfasd_${i}`} className="col-sm-4 shadow mt-2 mb-2 p-2 text text-center">
+            <span className='ml-2'>
+              {`${data}`.split("_").join(' ').toString().toUpperCase()}
             </span>
             <span>:</span>
-            <span className='ml-4'>
+            <span className='ml-2'>
               {content[data]}
             </span>
           </div>
@@ -41,5 +39,7 @@ const View_single = () => {
     
   )
 }
+
+
 
 export default View_single

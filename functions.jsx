@@ -18,7 +18,7 @@ axios.interceptors.request.use(function (config) {
   counter++;
   return config;
 }, function (error) {
-  if (response.config.method !== 'get') {
+  if (config.method !== 'get') {
     const elem =  document.querySelector('#loader');
     const checkelem = document.body.contains(elem);
     const message = JSON.stringify(error);
@@ -29,7 +29,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
   if (document) {
-    if (response.config.method !== 'get') {
+    if (response.method !== 'get') {
       const elem =  document.querySelector('#loader');
       const checkelem = document.body.contains(elem);
       const message = response.data.message;
@@ -38,13 +38,12 @@ axios.interceptors.response.use(function (response) {
 }
 return response;
 }, function (error) {
-
-  if (response.config.method !== 'get') {
-      const elem =  document.querySelector('#loader');
-      const checkelem = document.body.contains(elem);
-      const message = JSON.stringify(error);
-      checkelem? elem.innerHTML = message : '';
-    }
+    if (response.method !== 'get') {
+        const elem =  document.querySelector('#loader');
+        const checkelem = document.body.contains(elem);
+        const message = JSON.stringify(error);
+        checkelem? elem.innerHTML = message : '';
+      }
 });
 
 
@@ -535,4 +534,17 @@ export function EstatePlotBtn(name,btn_color,is_btn=false,message,url, data_moda
   this.on_click = on_click;
 }
 
+export function system_date(divider='-') {
+  let dt = new Date();
+  let day = dt.getDate();
+  let month = dt.getMonth() + 1;
+  let year = dt.getFullYear();
+  let result =``;
+  if (day < 9) {
+     result = `0${day}${divider}0${month}${divider}${year}`;
+  }else {
+    result = `${day}${divider}${month}${divider}${year}`;
+  }
 
+  return result;
+}

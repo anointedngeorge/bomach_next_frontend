@@ -17,10 +17,8 @@ export default function Create(props){
     const qy = router.query
     const { param, title} = router.query
     const [content, setContent] = useState(props.content)
-    const [content2, setContent2] = useState([])
 
 
-   
   return (
     // <Layout1 >
     //   <AppHead title={`Bomach Group | `} />
@@ -31,7 +29,7 @@ export default function Create(props){
           <li className="breadcrumb-item active">{title}</li>
         </ol>
         
-          <form action={`${process.env.realestate}/estate/plot/register-estate-plot`} 
+          <form action={`${process.env.realestate}/estate/plot/register-estate-plot/`} 
           onSubmit={settings_form} method='POST'>
           <div className='row'>
             <label>
@@ -56,7 +54,6 @@ export default function Create(props){
 
 
 export async function getServerSideProps({params, query, req, res }) {
-  
   const res2 = await fetch(`${process.env.main}/form/get-form/realestateplot/`)
   const content = await res2.json()
 
