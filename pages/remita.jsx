@@ -30,10 +30,11 @@ export default function View(props){
     <div className='container'>
     {/* {JSON.stringify(qy)} */}
         <Remita querys={qy}  content={[
+            {name:'Plot Price', price:`${qy.price}`},
             {name:'Legal Fee', price:`${content[0].legal_fee}`},
             {name:'survey plan', price:`${content[0].survey_plan}`},
             {name:`development Fee (${content[0].development_fee}%)`, 
-            price:percentage(`${content[0].development_fee}`,`${qy.amount}` )},
+            price:percentage(`${content[0].development_fee}`,`${qy.price}` )},
         ]} />
     </div>
   )
