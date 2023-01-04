@@ -74,7 +74,7 @@ export const DynamicFormData = ({
             return bool_value? (
             <div className='col-sm-6' key={`id_dasdfasfsdadawe_${i}`}>
                 <div className='form-group'>
-                    <label>{data.title.toUpperCase()}</label>
+                    <label>{data.label? data.label.toUpperCase() : data.title.toUpperCase()}</label>
                         <data.form_element 
                         type={data.form_type} name={data.name}
                         id={`id_${fm_name}`}

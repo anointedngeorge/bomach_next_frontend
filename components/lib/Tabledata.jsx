@@ -14,7 +14,8 @@ export const Tabledata = ({
     remove_xrh_data="",
     reload_fun_content="",
     fontsize='12px',
-    overflow=200
+    overflow=200,
+    on_doubleclick_fun=''
 }) => {
     const counter = 1;
     const [query, setQuery] = useState([])
@@ -64,7 +65,7 @@ async function remove_default(el) {
                             const head = data3.field !== undefined ? `${data3.field}`.split(' ').join('_') : 
                                                     `${data3}`.split(' ').join('_');
                             return (
-                                <td key={`id_343dsd_${i}`}>
+                                <td data-head={`${head}`.split(' ').join('_')} data-uuid={data2.id} data-content={data2[head]} onDoubleClick={on_doubleclick_fun || remove_default} key={`id_343dsd_${i}`}>
                                     {data2[head]}
                                 </td>
                             )

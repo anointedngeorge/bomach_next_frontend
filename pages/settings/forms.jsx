@@ -2,7 +2,7 @@ import { AppScript } from 'components/lib/AppScript'
 import Script from 'next/script'
 import React, {useEffect, useState, useRef} from 'react'
 import { useRouter } from 'next/router';
-import { authentication_token, get_xrh_data, settings_form,delete_xrh_data } from 'functions';
+import { authentication_token, get_xrh_data, settings_form,delete_xrh_data, update_xhr_data_with_data } from 'functions';
 import { DynamicFormData } from 'components/lib/DynamicForm';
 import { Services } from 'components/lib/Services';
 import { FORMTYPE,ELEMENTFUNCTION, CALCULATORFUNCTION } from 'navigation';
@@ -10,6 +10,7 @@ import { Layout1 } from 'components/layout/Layout1';
 import { AppHead } from 'components/lib/AppHead';
 import { Table2, Tabledata } from 'components/lib/Tabledata';
 var JSAlert = require("js-alert");
+// const popup = require("popup-prompt");
 
 export default function Create(props){
     const router = useRouter();
@@ -51,6 +52,22 @@ async function contentReloader(params) {
         });
 }
 
+
+async function changeTableFieldData(params) {
+    const uuid = params.target.dataset['uuid'];
+    const content = params.target.dataset['content'];
+    const head = params.target.dataset['head'];
+    const url =  `${process.env.main}/form/update-form/${uuid}`;
+ 
+    let dat = {}
+    if (document && window) {
+        if (window.confirm(" Are you sure to change? ")) {
+            let contentdata = window.prompt("Enter title", `${head} ${content}`)
+            dat[head]=contentdata
+            update_xhr_data_with_data(url, dat)
+        }
+    }
+}
 
 async function checkTargetSelect(params) {
     const target_id =  params.target.value;
@@ -273,9 +290,10 @@ async function checkTargetSelect(params) {
         overflow={500}
         reload_fun_content={contentReloader} 
         tbody={formfield2} 
-        thead={['title','form_service','form_type','form_element','function','function_name','function_target_value']} 
+        thead={['title','label','form_service','form_type','form_element','function','function_name','function_target_value']} 
         remove_xrh_data={remove_formfield}
         fontsize="15px"
+        on_doubleclick_fun={changeTableFieldData}
         pages={[
             {pagename:`settings/edit_forms`, 
             title:'Edit', 
